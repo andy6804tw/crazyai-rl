@@ -1,0 +1,47 @@
+site_name: 全民瘋AI系列 [強化學習]
+site_author: 10程式中
+# site_url: 
+extra_css:
+  - 'stylesheets/extra.css'
+extra_javascript:
+  - javascripts/extra.js
+theme:
+  # logo: assets/logo.png
+  name: material
+  language: 'zh-TW'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+  palette:
+    primary: 'teal'
+    accent: 'teal'
+repo_url: https://github.com/andy6804tw/crazyai-rl
+# use_directory_urls: false
+edit_uri: ""
+# Copyright
+copyright: 'Copyright © 2018 - 2024 10程式中'
+nav:
+  - '基礎概念':
+    - '1.什麼是強化學習.md'
+    - '2.強化學習方法總覽.md'
+
+
+
+markdown_extensions:
+  - admonition
+  - footnotes
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: false
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+plugins:
+  - search
+  # - mkpdfs:
+  #     design: design/report.css
+  #     author: Tsai Yi Lin
+  #     # company: "10程式中"
+  #     toc_title: Table of contents
+  #     output_path: pdf/全民瘋AI系列_探索可解釋人工智慧_v1.1.pdf
