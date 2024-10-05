@@ -24,7 +24,9 @@ nav:
   - '基礎概念':
     - '1.什麼是強化學習.md'
     - '2.強化學習方法總覽.md'
+  - '演算法/方法':
     - '3.Policy Gradient.md'
+    - '4.Q Leaning.md'
 
 
 
