@@ -26,7 +26,8 @@ nav:
     - '2.強化學習方法總覽.md'
   - '演算法/方法':
     - '3.Policy Gradient.md'
-    - '4.Q Leaning.md'
+    - '4.Q Leaning 概念.md'
+    - '5.Q Learning 範例一.md'
 
 
 
@@ -37,9 +38,6 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: false
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
 plugins:
   - search
   # - mkpdfs:
