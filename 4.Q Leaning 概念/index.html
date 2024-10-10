@@ -1,0 +1,616 @@
+
+
+
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="10程式中">
+      
+      
+        <meta name="lang:clipboard.copy" content="複製">
+      
+        <meta name="lang:clipboard.copied" content="已複製">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="沒有符合的項目">
+      
+        <meta name="lang:search.result.one" content="找到 1 個符合的項目">
+      
+        <meta name="lang:search.result.other" content="找到 # 個符合的項目">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>[Day 4] 什麼是 Q Leaning？ - 全民瘋AI系列 [強化學習]</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#day-4-q-leaning" tabindex="1" class="md-skip">
+        跳轉到
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              全民瘋AI系列 [強化學習]
+            </span>
+            <span class="md-header-nav__topic">
+              
+                [Day 4] 什麼是 Q Leaning？
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            打字進行搜尋
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    全民瘋AI系列 [強化學習]
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      基礎概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        基礎概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
+      [Day 1] 什麼是強化學習？
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-nav__link">
+      [Day 2] 強化學習方法總覽
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      演算法/方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        演算法/方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
+      DRL Lecture 1: Policy Gradient
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        [Day 4] 什麼是 Q Leaning？
+      </label>
+    
+    <a href="./" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link md-nav__link--active">
+      [Day 4] 什麼是 Q Leaning？
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="前言" class="md-nav__link">
+    前言
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning" title="Q-Learning 是什麼？" class="md-nav__link">
+    Q-Learning 是什麼？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning_1" title="Q-Learning 更新" class="md-nav__link">
+    Q-Learning 更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning_2" title="Q-Learning 演算法" class="md-nav__link">
+    Q-Learning 演算法
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
+      5.Q Learning 範例一
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" title="前言" class="md-nav__link">
+    前言
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning" title="Q-Learning 是什麼？" class="md-nav__link">
+    Q-Learning 是什麼？
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning_1" title="Q-Learning 更新" class="md-nav__link">
+    Q-Learning 更新
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning_2" title="Q-Learning 演算法" class="md-nav__link">
+    Q-Learning 演算法
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="day-4-q-leaning">[Day 4] 什麼是 Q Leaning？</h1>
+<h2 id="_1">前言</h2>
+<p>我們每個人做事情都有自己的行為準則，這些準則通常是基於過去經驗和所獲得的回饋。例如，小時候爸媽常常會說「不寫完作業就不准看電視」。這樣的規範會讓我們明白，在「寫作業」這種狀態下，好的行為準則就是繼續寫作業，直到完成，因為這樣我們就可以得到獎勵——看電視。相反，如果我們選擇了不好的行為，比如沒有寫完作業就去看電視，那麼結果可能會是被父母發現，後果不堪設想。</p>
+<p><img alt="" src="https://i.imgur.com/w7JeF5w.png" /></p>
+<p>隨著這種經驗重複發生，這些情境和行為會逐漸深植在我們的記憶中，最終形成我們的行為準則。這種學習的過程與 Q-Learning 的概念有異曲同工之妙。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在 Q-Learning 中，系統透過不斷地在環境中探索（explore）和利用（exploit）已知的經驗來學習一個最優行為策略。類似於我們在小時候不斷學習該做什麼、不該做什麼，以便最終在生活中做出最好的選擇。</p>
+</div>
+<h2 id="q-learning">Q-Learning 是什麼？</h2>
+<p>Q-Learning 是一種強化學習（Reinforcement Learning）的演算法，它的核心是透過決策過程來找出最優行為準則。我們可以透過一個具體的例子來說明 Q-Learning 是如何工作的。假設現在你處於一個「寫作業」的狀態，而在此之前，你並沒有嘗試過在寫作業的時候去看電視，因此對這兩種行為的後果並不清楚。這時，你有兩個選擇：</p>
+<ol>
+<li>繼續寫作業</li>
+<li>跑去看電視</li>
+</ol>
+<p>由於你之前沒有因為沒寫完作業就看電視而被處罰過，所以你選擇了第二個行為——去看電視。當你選擇了看電視後，現在的狀態變成了「正在看電視」，你又面臨一次新的選擇：繼續看電視或做其他事情。</p>
+<p><img alt="" src="https://i.imgur.com/ZtJgeNk.png" /></p>
+<p>這樣的行為反覆發生，你一次又一次地選擇看電視，直到最後，爸媽回家發現你沒有完成作業便去看電視，於是你受到了嚴厲的懲罰。這一次的負面經歷讓你深刻記住了這個教訓，並在你的腦海中將「沒寫完作業就看電視」這一行為標記為負面的行為。</p>
+<p>我們可以看到 Q-Learning 是如何根據過去經驗來進行決策的。假設我們已經有一張學習過的 Q 表。現在我處於狀態 𝑆1 ——正在寫作業，此時我有兩個選擇：</p>
+<ol>
+<li>𝐴1看電視</li>
+<li>𝐴2繼續寫作業</li>
+</ol>
+<p>根據我過去的經驗，在狀態 𝑆1 下，選擇 𝐴2（寫作業）所帶來的潛在獎勵高於選擇 𝐴1看電視）。這可以用 Q 表來表示：</p>
+<ul>
+<li>𝑄(𝑆1,𝐴1)=-2</li>
+<li>𝑄(𝑆1,𝐴2)=1</li>
+</ul>
+<p>由於 𝑄(𝑆1,𝐴2) 的值較高，我選擇 𝐴2——繼續寫作業。現在狀態更新為 𝑆2。在這個新狀態 𝑆2 中，我同樣有兩個選擇，並重複之前的過程：</p>
+<ul>
+<li>𝑄(𝑆2,𝐴1)=-4</li>
+<li>𝑄(𝑆2,𝐴2)=2</li>
+</ul>
+<p>同樣，我會選擇 𝐴2 繼續寫作業。這樣，Q-Learning 通過不斷選擇最大潛在獎勵的行為來進行決策。</p>
+<p><img alt="" src="https://i.imgur.com/H8EWzXn.png" /></p>
+<h2 id="q-learning_1">Q-Learning 更新</h2>
+<p>在 Q-Learning 的決策過程中，我們根據 Q 表的估計來進行行為選擇。首先，當我們處於狀態 𝑠1時，根據 Q 表的數值發現，行為 𝑎2的值比 𝑎1更高，因此在這種情況下，我們選擇了 𝑎2，進而轉移到新的狀態 𝑠2。</p>
+<p>接下來，進入 Q 表的更新步驟。此時，我們並不會立即採取行為，而是會「想象」自己在 𝑠2 狀態下可能的行為結果，分別評估每種行為的 Q 值。假設在 𝑠2 狀態下，𝑎2 的 Q 值比 𝑎1 的 Q 值高，我們會將較高的 𝑄(𝑠2,𝑎2) 乘上一個衰減因子 𝛾 (例如 0.9)，再加上當前在 𝑠2 所獲得的獎勵 𝑅 (在此例中可能還沒有實際獲得獎勵，因此 𝑅=0)。</p>
+<p><img alt="" src="https://i.imgur.com/V8QvXKT.png" /></p>
+<p>這樣，根據我們在 𝑠2 的預測結果，便可以計算出更新後的現實 Q 值。而此時，我們會將這個現實 Q 值與之前依據 Q 表所估計的 Q 值進行比較，兩者的差距就是更新的依據。接著，我們將這個差距乘上一個學習率 𝛼，並加回到原來的 𝑄(𝑠1,𝑎2)，得到更新後的 Q 值。</p>
+<p><img alt="" src="https://i.imgur.com/YbePfTW.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>雖然我們通過最大化 𝑄(𝑠2) 進行估算，但此時還沒有真正對 𝑠2 做出行為選擇，具體的行為選擇會在更新完 Q 表後再進行。這就是 Q-Learning 中「離線策略」(off-policy) 的特點。</p>
+</div>
+<h2 id="q-learning_2">Q-Learning 演算法</h2>
+<p>以下虛擬碼總結了我們前面討論的Q-Learning算法的核心內容。在每次更新中，我們會使用「Q現實」和「Q估計」來進行更新。而Q-Learning的巧妙之處在於「Q現實」包含了對下一步最大的Q估計，這個估計經過衰減後與當前所獲得的獎勵結合，來形成這一步的「Q現實」。</p>
+<p><img alt="" src="https://i.imgur.com/pEdCUsD.png" /></p>
+<p>以下是演算法中一些重要的參數：</p>
+<ul>
+<li><strong>ε-greedy 策略</strong>：這是一種在決策時用到的探索策略，當ε為0.9時，表示有90%的機會我們會根據Q表中的最優行為來選擇，而10%的時間則會隨機探索其他行為。</li>
+<li><strong>α（學習率）</strong>：這個參數用來控制每次學習的速度，決定這次更新時有多少誤差會被納入學習。它的值在0到1之間。</li>
+<li><strong>γ（衰減因子）</strong>：這個參數決定了對未來獎勵的重視程度。當γ等於1時，代表我們能夠清楚地看到所有未來的獎勵，當γ等於0時，則表示我們只關心當前的獎勵，對未來沒有考慮。</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/FTrH6Qz.png" /></p>
+<p>可以這樣理解，𝛾 等於 1 時，代表機器人有一副「完美的眼鏡」，它能夠清晰地看到未來所有的獎勵變化。但如果 𝛾趨近於 0，機器人則會「近視」，它只能看到眼前最近的獎勵，無法顧及未來的價值。隨著 
+𝛾 從 0 漸漸增大，機器人的「視力」也會逐漸改善，它會慢慢考慮更遠的未來獎勵，不再只關注眼前的利益。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Q-Learning 的這一算法讓機器人在選擇行動時不僅僅考慮眼前的收益，還能將未來的潛在收益一併考慮進來，隨著不斷更新Q表，決策變得越來越明智。</p>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一頁
+                </span>
+                DRL Lecture 1: Policy Gradient
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一頁
+                </span>
+                5.Q Learning 範例一
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2018 - 2024 10程式中
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>

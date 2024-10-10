@@ -1,0 +1,878 @@
+
+
+
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+      
+        <meta name="author" content="10程式中">
+      
+      
+        <meta name="lang:clipboard.copy" content="複製">
+      
+        <meta name="lang:clipboard.copied" content="已複製">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="沒有符合的項目">
+      
+        <meta name="lang:search.result.one" content="找到 1 個符合的項目">
+      
+        <meta name="lang:search.result.other" content="找到 # 個符合的項目">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>[Day 2] 強化學習方法總覽 - 全民瘋AI系列 [強化學習]</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#day-2" tabindex="1" class="md-skip">
+        跳轉到
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              全民瘋AI系列 [強化學習]
+            </span>
+            <span class="md-header-nav__topic">
+              
+                [Day 2] 強化學習方法總覽
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            打字進行搜尋
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    全民瘋AI系列 [強化學習]
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      基礎概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        基礎概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
+      [Day 1] 什麼是強化學習？
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        [Day 2] 強化學習方法總覽
+      </label>
+    
+    <a href="./" title="[Day 2] 強化學習方法總覽" class="md-nav__link md-nav__link--active">
+      [Day 2] 強化學習方法總覽
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-free-vs-model-based" title="Model-Free vs Model-Based" class="md-nav__link">
+    Model-Free vs Model-Based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-free" title="Model-Free 方法" class="md-nav__link">
+    Model-Free 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-based" title="Model-Based 方法" class="md-nav__link">
+    Model-Based 方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-based-vs-value-based" title="Policy-Based vs Value-Based" class="md-nav__link">
+    Policy-Based vs Value-Based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-based" title="Policy-Based（基於策略）" class="md-nav__link">
+    Policy-Based（基於策略）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-based" title="Value-Based（基於價值）" class="md-nav__link">
+    Value-Based（基於價值）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actor-critic" title="Actor-Critic（結合兩者優勢）" class="md-nav__link">
+    Actor-Critic（結合兩者優勢）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#episode-based-vs-step-based" title="Episode-based vs Step-based" class="md-nav__link">
+    Episode-based vs Step-based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#episode-based" title="Episode-based（回合更新）" class="md-nav__link">
+    Episode-based（回合更新）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-based" title="Step-based（單步更新）" class="md-nav__link">
+    Step-based（單步更新）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-learning-vs-offline-learning" title="Online Learning vs Offline Learning" class="md-nav__link">
+    Online Learning vs Offline Learning
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-learning" title="Online Learning（在線學習）" class="md-nav__link">
+    Online Learning（在線學習）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-learning" title="Offline Learning（離線學習）" class="md-nav__link">
+    Offline Learning（離線學習）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      演算法/方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        演算法/方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
+      DRL Lecture 1: Policy Gradient
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link">
+      [Day 4] 什麼是 Q Leaning？
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
+      5.Q Learning 範例一
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#model-free-vs-model-based" title="Model-Free vs Model-Based" class="md-nav__link">
+    Model-Free vs Model-Based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-free" title="Model-Free 方法" class="md-nav__link">
+    Model-Free 方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#model-based" title="Model-Based 方法" class="md-nav__link">
+    Model-Based 方法
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policy-based-vs-value-based" title="Policy-Based vs Value-Based" class="md-nav__link">
+    Policy-Based vs Value-Based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#policy-based" title="Policy-Based（基於策略）" class="md-nav__link">
+    Policy-Based（基於策略）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#value-based" title="Value-Based（基於價值）" class="md-nav__link">
+    Value-Based（基於價值）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#actor-critic" title="Actor-Critic（結合兩者優勢）" class="md-nav__link">
+    Actor-Critic（結合兩者優勢）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#episode-based-vs-step-based" title="Episode-based vs Step-based" class="md-nav__link">
+    Episode-based vs Step-based
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#episode-based" title="Episode-based（回合更新）" class="md-nav__link">
+    Episode-based（回合更新）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-based" title="Step-based（單步更新）" class="md-nav__link">
+    Step-based（單步更新）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#online-learning-vs-offline-learning" title="Online Learning vs Offline Learning" class="md-nav__link">
+    Online Learning vs Offline Learning
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-learning" title="Online Learning（在線學習）" class="md-nav__link">
+    Online Learning（在線學習）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-learning" title="Offline Learning（離線學習）" class="md-nav__link">
+    Offline Learning（離線學習）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="day-2">[Day 2] 強化學習方法總覽</h1>
+<h2 id="model-free-vs-model-based">Model-Free vs Model-Based</h2>
+<ul>
+<li>
+<p><strong>Model-Free 方法</strong>：</p>
+<ul>
+<li>代理人無需理解環境，僅通過從環境中獲取的反饋進行學習。</li>
+<li>優點：計算量通常較小，實現簡單。</li>
+<li>缺點：需要在真實環境中進行大量的探索和試錯，學習效率相對較低。</li>
+</ul>
+</li>
+<li>
+<p><strong>Model-Based 方法</strong>：</p>
+<ul>
+<li>代理人通過理解並建模環境，能夠在虛擬環境中模擬行為結果。</li>
+<li>優點：能夠預測行為結果，減少試錯成本，提升學習效率。</li>
+<li>缺點：需要額外的計算資源來構建和維護環境模型。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/8h4Mkk6.png" /></p>
+<p>Model-Based 方法還有一個致勝法寶——想像力。透過建立環境模型，代理人能夠預測未來的狀況，進行計劃和決策。而 Model-Free 方法中，代理人只能等待每次行為的實際反饋，然後再做出下一步行動。這就是為什麼 AlphaGo 能夠超越人類，在圍棋賽場上取得勝利，因為它能夠通過預測無數未來的可能性來選擇最佳行動。</p>
+<h3 id="model-free">Model-Free 方法</h3>
+<p>如果我們不去試圖理解環境，而是單純根據環境給我們的反饋來學習，那麼這就是 Model-Free 方法。這類方法並不試圖建立環境的模型，代理人僅僅通過與環境的互動，從反饋中學習如何達到目標。簡單來說，代理人不知道環境的內部運作，只能根據每次行為得到的結果進行學習和調整。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Q-Learning：通過狀態-行為對的價值估算來決定最佳行動。</li>
+<li>Sarsa：類似 Q-Learning，但基於代理人在下一個狀態中的行為來更新價值。</li>
+<li>Policy Gradients：通過直接學習策略，來決定如何在每個狀態下選擇行動。</li>
+</ul>
+<blockquote>
+<p>這些方法都不考慮環境的具體結構，僅通過直接與環境互動來學習。</p>
+</blockquote>
+<h3 id="model-based">Model-Based 方法</h3>
+<p>相比之下，Model-Based 方法則多了一道重要的步驟：它會嘗試建立一個能夠代表環境的模型，這個模型能夠預測環境如何對代理人的行為做出反應。換句話說，代理人不僅在真實環境中學習，還可以通過這個模型來模擬環境中的行為，提前預測某些行動可能產生的後果，從而減少在真實環境中的錯誤。</p>
+<p>舉個例子，假設我們有一個機器人在現實世界中玩耍。這個機器人如果不理解環境，可能會隨意丟出一顆原子彈，結果把自己炸死了。這就是 Model-Free 的情況——機器人直接與環境互動，並根據實際結果學習。而 Model-Based 方法則不同，機器人會根據以往的經驗學習如何建立一個環境模型，並在這個虛擬環境中模擬出它的行為結果。這樣，它可以在模擬的環境中“玩耍”，比如模擬丟出原子彈的情境，避免在真實世界中犯錯。</p>
+<p><img alt="" src="https://i.imgur.com/Mxs784y.png" /></p>
+<p>總結來說，Model-Free 方法更直接，通過與真實環境的互動學習；而 Model-Based 方法則強調通過構建環境模型，進行預測與學習。這兩種方法各有優缺點，適用於不同的應用場景。</p>
+<h2 id="policy-based-vs-value-based">Policy-Based vs Value-Based</h2>
+<p>在強化學習中，除了以是否理解環境來區分方法之外，還可以根據決策的方式將方法分為兩類：<strong>Policy-Based（基於策略）</strong> 和 <strong>Value-Based（基於價值）</strong> 方法。這兩種方法各有其優勢與應用場景，以下將對這兩種方法進行詳細介紹。</p>
+<ul>
+<li><strong>Policy-Based（基於策略）</strong> 方法通過動作概率來決策，能夠很好地處理連續動作空間的問題，具有更高的靈活性。</li>
+<li><strong>Value-Based（基於價值）</strong> 方法基於動作價值來決策，決策果斷，但在處理連續動作時存在限制。</li>
+<li><strong>Actor-Critic（結合兩者優勢）</strong> 結合了兩者的優勢，透過同時考慮策略和價值，實現了更高效的學習。</li>
+</ul>
+<blockquote>
+<p>這兩類方法在強化學習中各有應用，且它們之間的結合方法（如 Actor-Critic）使得強化學習在複雜環境中的表現更加優秀。</p>
+</blockquote>
+<h3 id="policy-based">Policy-Based（基於策略）</h3>
+<p>Policy-Based 方法是強化學習中最直接的一種方法，它根據環境的當前狀態，通過策略函數直接輸出下一步各種行動的概率。每個可能的動作都會有一個對應的概率，代理人根據這個概率來決定選擇哪一個行動。因此，即使某個動作的概率最高，也不一定會被選擇，因為代理人是依據概率進行隨機選擇。</p>
+<p><img alt="" src="https://datawhalechina.github.io/easy-rl/img/ch1/1.31.png" /></p>
+<p>這種方法的優點之一是能夠很好地處理連續動作空間。在連續動作的場景中，基於價值的方法無法輕易處理，因為它需要為每一個可能的行動都計算價值，而連續動作空間無窮無盡。然而，Policy-Based 方法通過生成一個概率分佈，就可以在連續動作中選擇特定的行動，這讓它在處理複雜動作的問題上更具靈活性。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Policy Gradients：這是典型的 Policy-Based 方法，通過優化策略來提高高回報行為的選擇概率。</li>
+</ul>
+<h3 id="value-based">Value-Based（基於價值）</h3>
+<p>相較於基於策略的方法，Value-Based 方法則是根據每個可能動作的價值進行選擇。代理人在決策時，會計算出每一個行動的價值，然後選擇價值最高的行動。這使得 Value-Based 方法的決策更為「果斷」，因為它總是選擇當前價值最高的行為，並不會考慮隨機性。</p>
+<p><img alt="" src="https://datawhalechina.github.io/easy-rl/img/ch1/1.32.png" /></p>
+<p>這種方法的限制在於，當面對連續動作空間時，計算每一個動作的價值變得困難且不可行。Value-Based 方法適合於離散動作空間，能夠有效地對每一個具體的動作進行價值估計。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Q-Learning：透過學習每個狀態-行動對的價值來決定最優行為。</li>
+<li>Sarsa：類似 Q-Learning，但其更新是基於代理人在下一個狀態中實際選擇的行動。</li>
+</ul>
+<h3 id="actor-critic">Actor-Critic（結合兩者優勢）</h3>
+<p>既然 Policy-Based 和 Value-Based 各有其優勢與劣勢，研究者們發展出一種結合兩者的方法，稱為 Actor-Critic。這種方法中的 Actor 負責基於策略輸出行動的概率分佈，而 Critic 則負責根據行動的價值對選擇進行評價。</p>
+<p>Actor-Critic 的好處在於，它能夠利用 Policy-Based 方法靈活的行動選擇，並通過 Value-Based 方法加速學習過程。Critic 提供的價值函數能夠幫助 Actor 更快速地學習如何優化策略，從而提升學習效率。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Actor-Critic：將策略梯度與價值估計結合的強化學習算法，是目前廣泛使用的一類方法。</li>
+</ul>
+<h2 id="episode-based-vs-step-based">Episode-based vs Step-based</h2>
+<p>在強化學習中，我們可以根據更新策略的時機將方法分為兩大類：<strong>Episode-based（回合更新）</strong> 和 <strong>Step-based（單步更新）</strong>。這兩種方式在如何更新代理人的行為準則上有著本質的不同。</p>
+<p><img alt="" src="https://i.imgur.com/NwHi37I.png" /></p>
+<ul>
+<li>
+<p><strong>Episode-based（回合更新）</strong>：</p>
+<ul>
+<li>代理人在回合結束後總結整個過程，根據最終結果來更新策略。</li>
+<li>適合有明確起點與終點的任務，例如一局圍棋、一場遊戲或任務結束時才得到回報的情境。</li>
+<li>優點：可以看到整體回報，避免過早更新錯誤策略。</li>
+<li>缺點：學習速度較慢，無法及時調整策略。</li>
+</ul>
+</li>
+<li>
+<p><strong>Step-based（單步更新）</strong>：</p>
+<ul>
+<li>代理人在每一步行動後根據當前結果進行更新，能夠即時學習。</li>
+<li>適合持續動態的問題或需要快速適應的場景，例如即時決策或控制任務。</li>
+<li>優點：學習速度快，能夠及時調整行為。</li>
+<li>缺點：可能會過於依賴短期結果，導致策略不夠穩定。</li>
+</ul>
+</li>
+</ul>
+<p><img alt="" src="https://i.imgur.com/aMXL5TJ.png" /></p>
+<p>回合更新適合於那些需要觀察整體結果的場景，而單步更新則更適合需要即時反應的情境。在現代強化學習中，由於單步更新的高效率，大多數的強化學習算法都基於此方法。例如，Q-Learning 和 Sarsa 就是典型的單步更新方法。</p>
+<h3 id="episode-based">Episode-based（回合更新）</h3>
+<p>回合更新指的是代理人在一個完整的遊戲回合（Episode）結束後，才進行學習和策略更新。也就是說，代理人在每次遊戲開始後，會持續地進行行動，直到達到遊戲的結束點。等回合結束後，代理人總結這一回合中所有的行動和轉折點，然後再更新策略和行為準則。</p>
+<p>這種方法的特點在於，它將學習過程延遲到回合結束後，因此在回合進行中，代理人無法即時調整策略。這類方法比較適合那些有明確開始和結束界限的問題，例如遊戲中的一局棋局或模擬中的一個完整任務。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Monte Carlo Learning：代理人在每個回合結束後，根據回合中的累積回報來更新其策略。</li>
+<li>基礎版的 Policy Gradients：策略梯度方法中，也有部分算法是基於回合更新的方式來優化策略。</li>
+</ul>
+<h3 id="step-based">Step-based（單步更新）</h3>
+<p>與回合更新不同，單步更新是指代理人在遊戲進行中的每一步都會根據當前的狀態和回報立即進行策略更新。代理人不必等待遊戲的結束，而是能夠在每次行動後立刻學習，並在下一次行動中根據更新後的策略進行選擇。</p>
+<p>單步更新的好處在於，它能夠邊玩邊學習，讓代理人及時調整行為，從而加快學習速度。在許多實際應用中，單步更新的效率更高，因此被廣泛採用。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Q-Learning：Q-Learning 是一種典型的單步更新方法，代理人根據每一步的狀態轉移和回報，及時更新 Q 值。</li>
+<li>Sarsa：類似於 Q-Learning，Sarsa 也是一種逐步更新的價值學習方法，根據每個狀態-行動對的結果來更新策略。
+升級版的 Policy Gradients：在策略梯度方法中，進一步的改進也導入了單步更新的概念，使得學習效率提升。</li>
+</ul>
+<h2 id="online-learning-vs-offline-learning">Online Learning vs Offline Learning</h2>
+<p>在強化學習的領域中，我們可以將學習模式分為在線學習（Online Learning）和離線學習（Offline Learning）。這兩種方法的區別在於代理人學習的時間點和方式，並且在不同的場景中有各自的優勢。</p>
+<p><img alt="" src="https://i.imgur.com/CvUEvAd.png" /></p>
+<ul>
+<li><strong>Online Learning（在線學習）</strong>：<ul>
+<li>即時學習，代理人在與環境交互的同時進行更新和調整。</li>
+<li>優勢：能夠快速適應環境的變化，及時反應，適合動態變化的情境。</li>
+<li>劣勢：需要持續與環境交互，無法充分利用過往經驗，學習效率相對較低。</li>
+</ul>
+</li>
+<li><strong>Offline Learning（離線學習）</strong>：<ul>
+<li>基於過去的經驗進行學習，無需即時與環境互動。</li>
+<li>優勢：可以利用大量歷史數據進行訓練，不需要每次都親自參與，學習效率更高，適合模擬訓練或批量數據處理。</li>
+<li>劣勢：可能無法立即適應環境的變化，依賴於訓練數據的質量和準確性。</li>
+</ul>
+</li>
+</ul>
+<p>在實際應用中，這兩種學習模式經常結合使用。例如，在初期階段代理人可以通過離線學習從過往經驗中快速學習，然後再進入在線學習階段，通過與環境的互動來進一步微調策略。這樣的結合使用方式能夠大大提升強化學習的效率。</p>
+<p>舉例來說，像 Deep Q-Network (DQN) 這樣的方法，首先可以通過離線學習大量歷史遊戲數據來訓練一個初始模型，然後在實際環境中進行在線學習，進一步優化和調整策略。</p>
+<h3 id="online-learning">Online Learning（在線學習）</h3>
+<p>在線學習指的是代理人在與環境的交互過程中，即時進行學習。也就是說，代理人在每一次行動後都根據當前的經驗更新策略或價值函數。這意味著代理人必須「親自上場」，在每一步中不斷地從自己的行為中學習，類似於我們邊做邊學的過程。</p>
+<p>在這種情況下，代理人需要在實際操作中不斷適應環境，根據每一步的反饋及時進行策略調整，這使得在線學習能夠即時反應、快速適應新的環境變化。這種學習模式適合那些需要立即響應或動態環境變化的任務。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Sarsa：一個典型的在線學習方法。Sarsa 在每次行動後即時根據當前的行動、下一步的狀態和回報來更新策略。</li>
+<li>Sarsa(λ)：這是 Sarsa 的進階版本，使用了一個帶有記憶的參數來追蹤更長期的行為。</li>
+</ul>
+<h3 id="offline-learning">Offline Learning（離線學習）</h3>
+<p>離線學習則允許代理人根據過去的經驗進行學習，而不一定需要在與環境交互的過程中即時更新策略。代理人可以選擇通過觀察他人的行為或在模擬環境中學習，甚至可以在實際遊戲結束後根據儲存的數據進行回顧和學習。因此，代理人不一定需要「親自上場」，而是可以從其他人的經歷中學習，這使得離線學習的效率更高，因為它不受限於即時反饋。</p>
+<p>離線學習的一個核心特點是，它可以根據大量的歷史數據進行學習，這些數據不必由代理人自己生成，而可以來自任何已知的經驗數據庫。這讓離線學習能夠在不干擾實際環境的情況下進行大規模的訓練和優化，特別適合用於需要大量模擬數據的應用場景。</p>
+<p><strong>例子</strong>：</p>
+<ul>
+<li>Q-Learning：一個經典的離線學習方法，它通過對狀態-行動對的價值進行更新，並在每一回合結束後進行策略的優化。</li>
+<li>Deep Q-Network (DQN)：基於深度學習的 Q-Learning 方法，通過離線學習大量遊戲數據，成功應用於遊戲領域，如 Atari 遊戲。</li>
+</ul>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一頁
+                </span>
+                [Day 1] 什麼是強化學習？
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一頁
+                </span>
+                DRL Lecture 1: Policy Gradient
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2018 - 2024 10程式中
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
