@@ -5,6 +5,8 @@ extra_css:
   - 'stylesheets/extra.css'
 extra_javascript:
   - javascripts/extra.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 theme:
   # logo: assets/logo.png
   name: material
@@ -28,6 +30,7 @@ nav:
     - '3.Policy Gradient.md'
     - '4.Q Leaning 概念.md'
     - '5.Q Learning 範例一.md'
+    - '6.DRL Lecture 3: Q-learning.md'
 
 
 
@@ -38,6 +41,12 @@ markdown_extensions:
       guess_lang: false
   - toc:
       permalink: false
+  - pymdownx.arithmatex:
+      generic: true
+  - admonition
+  - pymdownx.details
+  
+  
 plugins:
   - search
   # - mkpdfs:
