@@ -1,4 +1,4 @@
-site_name: 全民瘋AI系列 [強化學習]
+site_name: 全民瘋AI系列 [深度強化學習]
 site_author: 10程式中
 site_url: https://andy6804tw.github.io/crazyai-rl/
 extra_css:
@@ -17,6 +17,8 @@ theme:
   palette:
     primary: 'teal'
     accent: 'teal'
+  features:
+    - content.footnote.tooltips
 repo_url: https://github.com/andy6804tw/crazyai-rl
 # use_directory_urls: false
 edit_uri: ""
@@ -45,6 +47,7 @@ markdown_extensions:
       generic: true
   - admonition
   - pymdownx.details
+
   
   
 plugins:
