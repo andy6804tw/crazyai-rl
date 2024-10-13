@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/Policy Gradient/">
+      
       
         <meta name="author" content="10程式中">
       
@@ -38,7 +40,7 @@
     
     
       
-        <title>DRL Lecture 1: Policy Gradient - 全民瘋AI系列 [強化學習]</title>
+        <title>5.Policy Gradient</title>
       
     
     
@@ -67,6 +69,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     
       
     
@@ -89,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#drl-lecture-1-policy-gradient" tabindex="1" class="md-skip">
+      <a href="#policy-gradient" tabindex="1" class="md-skip">
         跳轉到
       </a>
     
@@ -98,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -111,11 +115,11 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              全民瘋AI系列 [強化學習]
+              全民瘋AI系列 [深度強化學習]
             </span>
             <span class="md-header-nav__topic">
               
-                DRL Lecture 1: Policy Gradient
+                5.Policy Gradient
               
             </span>
           
@@ -190,12 +194,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    全民瘋AI系列 [強化學習]
+    全民瘋AI系列 [深度強化學習]
   </label>
   
     <div class="md-nav__source">
@@ -245,8 +249,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
-      [Day 1] 什麼是強化學習？
+    <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-nav__link">
+      1.什麼是強化學習
     </a>
   </li>
 
@@ -257,8 +261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-nav__link">
-      [Day 2] 強化學習方法總覽
+    <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-nav__link">
+      2.強化學習方法總覽
     </a>
   </li>
 
@@ -293,6 +297,42 @@
           
           
 
+
+  <li class="md-nav__item">
+    <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-nav__link">
+      3.1 Q-learning 概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link">
+      3.2 Q-learning 實作範例（ㄧ）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-nav__link">
+      4.Deep Q-learning（DQN）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
   
 
 
@@ -304,11 +344,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        DRL Lecture 1: Policy Gradient
+        5.Policy Gradient
       </label>
     
-    <a href="./" title="DRL Lecture 1: Policy Gradient" class="md-nav__link md-nav__link--active">
-      DRL Lecture 1: Policy Gradient
+    <a href="./" title="5.Policy Gradient" class="md-nav__link md-nav__link--active">
+      5.Policy Gradient
     </a>
     
       
@@ -322,7 +362,7 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#policy-gradient" title="回顧 Policy Gradient" class="md-nav__link">
+  <a href="#policy-gradient_1" title="回顧 Policy Gradient" class="md-nav__link">
     回顧 Policy Gradient
   </a>
   
@@ -356,7 +396,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#policy-gradient_1" title="Policy Gradient學習方式" class="md-nav__link">
+  <a href="#policy-gradient_2" title="Policy Gradient學習方式" class="md-nav__link">
     Policy Gradient學習方式
   </a>
   
@@ -407,30 +447,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link">
-      [Day 4] 什麼是 Q Leaning？
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
-      5.Q Learning 範例一
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -457,7 +473,7 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#policy-gradient" title="回顧 Policy Gradient" class="md-nav__link">
+  <a href="#policy-gradient_1" title="回顧 Policy Gradient" class="md-nav__link">
     回顧 Policy Gradient
   </a>
   
@@ -491,7 +507,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#policy-gradient_1" title="Policy Gradient學習方式" class="md-nav__link">
+  <a href="#policy-gradient_2" title="Policy Gradient學習方式" class="md-nav__link">
     Policy Gradient學習方式
   </a>
   
@@ -548,11 +564,11 @@
               
                 
                 
-                <h1 id="drl-lecture-1-policy-gradient">DRL Lecture 1: Policy Gradient</h1>
+                <h1 id="policy-gradient">Policy Gradient</h1>
 <p>這篇文章將介紹一個強化學習中的進階技術，名為 Proximal Policy Optimization (PPO)。PPO 是一種政策梯度的升級版方法，被 OpenAI 當作他們的預設強化學習演算法。假如你要實作強化學習，PPO 很可能是你首先會考慮的算法之一。</p>
 <p>我們將先快速回顧 Policy Gradient，讓大家再次熟悉這個基礎概念，隨後會深入探討如何從 on-policy 方法轉變為 off-policy 方法，並進一步解釋這兩者的區別。最後，我們將介紹如何在 off-policy 方法上加入一些約束條件，進而形成 PPO 演算法。</p>
 <p><img alt="" src="https://i.imgur.com/NSKoS8K.png" /></p>
-<h2 id="policy-gradient">回顧 Policy Gradient</h2>
+<h2 id="policy-gradient_1">回顧 Policy Gradient</h2>
 <p>首先，我們來快速回顧一下 Policy Gradient，因為 PPO 是 Policy Gradient 的變形，因此理解這個基礎非常重要。在強化學習（Reinforcement Learning, RL）中，主要有三個基本組件：</p>
 <ul>
 <li>Actor：即代理人，負責決策，選擇下一步應該執行的行動。</li>
@@ -624,7 +640,7 @@
 <p>根據這些機率，我們可以計算每個 Trajectory 的總回報，然後對所有可能的 Trajectory 進行加權總和，這就是總回報的期望值。我們可以將這個過程寫作：</p>
 <p><img alt="" src="https://i.imgur.com/qVJdX8K.png" /></p>
 <p>這表示從 𝑝𝜃(𝜏) 的分佈中抽樣一個 Trajectory，然後計算其總回報 𝑅(𝜏) 的期望值。</p>
-<h2 id="policy-gradient_1">Policy Gradient學習方式</h2>
+<h2 id="policy-gradient_2">Policy Gradient學習方式</h2>
 <p>在強化學習中，我們的目標是最大化期望回報（Expected Reward）。為了實現這個目標，我們使用梯度上升法（Gradient Ascent），與常見的梯度下降法不同，梯度上升法是讓期望回報逐漸變大，因此在更新參數時我們進行加法而不是減法。</p>
 <p>為了應用梯度上升法，我們需要計算期望回報 𝑅ˉ𝜃 的梯度。首先，我們來看期望回報的梯度計算。因為只有機率分佈 𝑝𝜃(𝜏) 與參數 𝜃 相關，所以梯度只作用在這個機率分佈上。此時，我們不需要考慮回報函數 𝑅(𝜏) 是否可微分，因為即使回報函數是不可微的（例如在一些情境下，回報函數可能是黑箱模型），我們仍然可以進行後續計算。接下來，我們可以利用常見的數學公式，即：</p>
 <p><img alt="" src="https://i.imgur.com/EuVn1ey.png" /></p>
@@ -711,7 +727,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -720,25 +736,11 @@
                 <span class="md-footer-nav__direction">
                   上一頁
                 </span>
-                [Day 2] 強化學習方法總覽
+                4.Deep Q-learning（DQN）
               </span>
             </div>
           </a>
         
-        
-          <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
-              <span class="md-flex__ellipsis">
-                <span class="md-footer-nav__direction">
-                  下一頁
-                </span>
-                [Day 4] 什麼是 Q Leaning？
-              </span>
-            </div>
-            <div class="md-flex__cell md-flex__cell--shrink">
-              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
-            </div>
-          </a>
         
       </nav>
     </div>
@@ -786,6 +788,12 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>

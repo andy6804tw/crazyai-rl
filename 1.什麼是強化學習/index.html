@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/1.什麼是強化學習/">
+      
       
         <meta name="author" content="10程式中">
       
@@ -38,7 +40,7 @@
     
     
       
-        <title>[Day 1] 什麼是強化學習？ - 全民瘋AI系列 [強化學習]</title>
+        <title>1.什麼是強化學習</title>
       
     
     
@@ -67,6 +69,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     
       
     
@@ -89,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#day-1" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="1" class="md-skip">
         跳轉到
       </a>
     
@@ -98,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -111,11 +115,11 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              全民瘋AI系列 [強化學習]
+              全民瘋AI系列 [深度強化學習]
             </span>
             <span class="md-header-nav__topic">
               
-                [Day 1] 什麼是強化學習？
+                1.什麼是強化學習
               
             </span>
           
@@ -190,12 +194,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    全民瘋AI系列 [強化學習]
+    全民瘋AI系列 [深度強化學習]
   </label>
   
     <div class="md-nav__source">
@@ -256,11 +260,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        [Day 1] 什麼是強化學習？
+        1.什麼是強化學習
       </label>
     
-    <a href="./" title="[Day 1] 什麼是強化學習？" class="md-nav__link md-nav__link--active">
-      [Day 1] 什麼是強化學習？
+    <a href="./" title="1.什麼是強化學習" class="md-nav__link md-nav__link--active">
+      1.什麼是強化學習
     </a>
     
       
@@ -274,28 +278,28 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="機器人是如何學習的呢？" class="md-nav__link">
+  <a href="#_2" title="機器人是如何學習的呢？" class="md-nav__link">
     機器人是如何學習的呢？
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="分數在強化學習中的重要性" class="md-nav__link">
+  <a href="#_3" title="分數在強化學習中的重要性" class="md-nav__link">
     分數在強化學習中的重要性
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="典型的強化學習架構" class="md-nav__link">
+  <a href="#_4" title="典型的強化學習架構" class="md-nav__link">
     典型的強化學習架構
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="強化學習的算法家族" class="md-nav__link">
+  <a href="#_5" title="強化學習的算法家族" class="md-nav__link">
     強化學習的算法家族
   </a>
   
@@ -364,8 +368,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-nav__link">
-      [Day 2] 強化學習方法總覽
+    <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-nav__link">
+      2.強化學習方法總覽
     </a>
   </li>
 
@@ -400,8 +404,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
-      DRL Lecture 1: Policy Gradient
+    <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-nav__link">
+      3.1 Q-learning 概念
     </a>
   </li>
 
@@ -412,8 +416,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link">
-      [Day 4] 什麼是 Q Leaning？
+    <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link">
+      3.2 Q-learning 實作範例（ㄧ）
     </a>
   </li>
 
@@ -424,8 +428,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
-      5.Q Learning 範例一
+    <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-nav__link">
+      4.Deep Q-learning（DQN）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-nav__link">
+      5.Policy Gradient
     </a>
   </li>
 
@@ -456,28 +472,28 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="機器人是如何學習的呢？" class="md-nav__link">
+  <a href="#_2" title="機器人是如何學習的呢？" class="md-nav__link">
     機器人是如何學習的呢？
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" title="分數在強化學習中的重要性" class="md-nav__link">
+  <a href="#_3" title="分數在強化學習中的重要性" class="md-nav__link">
     分數在強化學習中的重要性
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" title="典型的強化學習架構" class="md-nav__link">
+  <a href="#_4" title="典型的強化學習架構" class="md-nav__link">
     典型的強化學習架構
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" title="強化學習的算法家族" class="md-nav__link">
+  <a href="#_5" title="強化學習的算法家族" class="md-nav__link">
     強化學習的算法家族
   </a>
   
@@ -546,18 +562,18 @@
               
                 
                 
-                <h1 id="day-1">[Day 1] 什麼是強化學習？</h1>
+                <h1 id="_1">什麼是強化學習？</h1>
 <p>今天我們將討論機器學習中的另一個重要分支——強化學習（Reinforcement Learning）。強化學習是一類特殊的算法。簡單來說，計算機從一開始什麼都不知道，腦中一片空白，透過不斷的嘗試與錯誤學習，最終找到規律，學會如何達成目標。這就是強化學習的基本流程。</p>
 <p>現實生活中有許多強化學習的例子。最有名的例子莫過於AlphaGo，這台機器首次在圍棋比賽中擊敗了人類頂尖棋手。還有讓計算機自學如何玩經典遊戲Atari的案例，這些都是透過不斷嘗試、更新行為準則，讓計算機學會下圍棋或在遊戲中獲得高分的過程。</p>
 <p><img alt="" src="https://cdn.prod.website-files.com/5d7b77b063a9066d83e1209c/626225c5a5602e1b840a31f0_NxKq7jCHZUXiteWRVby-UO1NTxb7A9qPCeoo1_8licAkii03hzieJdWreERWoVpf-gxw1xsM5xaHmDwOmMD6iyeTflSfx2426CjgoTWCEAhVSme7qqKMVdln-sR0CoS1q3vNx8RV.png" /></p>
-<h2 id="_1">機器人是如何學習的呢？</h2>
+<h2 id="_2">機器人是如何學習的呢？</h2>
 <p>其實，機器人也需要一位虛擬的老師。不過，這位老師很吝嗇。他不會告訴你應該如何行動或做決定，他唯一做的就是為你的行為打分。那麼，計算機如何從分數中學習如何做決策呢？其實很簡單，只要記住那些高分和低分對應的行為，下一次就使用能獲得高分的行為，避免那些導致低分的行為。</p>
 <p><img alt="" src="https://i.imgur.com/iaO8WBa.png" /></p>
 <p>舉個例子，假設這位老師會根據我的開心程度給我打分。當我開心時，我會得到高分；當我不開心時，我則會得到低分。有了這些打分經驗後，我就能知道，為了得到高分，我應該選擇一張開心的臉，避免選擇傷心的臉。這正是強化學習的核心思想——通過分數學習如何做出最佳決策。</p>
 <p><img alt="" src="https://i.imgur.com/7MXUtEZ.png" /></p>
-<h2 id="_2">分數在強化學習中的重要性</h2>
+<h2 id="_3">分數在強化學習中的重要性</h2>
 <p>在強化學習中，分數的作用十分重要，因為強化學習具有分數導向性。這個概念類似於監督學習中的正確標籤。我們知道，監督學習已經有了數據與對應的標籤，例如通過訓練學習哪些臉對應哪些標籤。但是，強化學習走得更遠——一開始它並沒有任何數據或標籤，而是通過在環境中的不斷嘗試來獲取這些數據與標籤，然後再學習如何選擇能夠帶來高分的行為（例如選擇開心臉）。</p>
-<h2 id="_3">典型的強化學習架構</h2>
+<h2 id="_4">典型的強化學習架構</h2>
 <p><img alt="" src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*n1AZU6IkpfjC0l22Md2x0Q.png" /></p>
 <ol>
 <li><strong>Agent（代理人）</strong><ul>
@@ -598,7 +614,21 @@
 定義：價值函數是從狀態到實數的映射，用於評估在某一狀態下，執行一系列動作後可期望獲得的長期回報。
 角色：代理人通過價值函數預測未來回報，從而決定最佳策略。</li>
 </ol>
-<h2 id="_4">強化學習的算法家族</h2>
+<details class="tip"><summary>價值（Value）和獎勵（Reward）區別</summary><p><strong>獎勵（Reward, 𝑟𝑡）</strong> 是指在每個時間步驟中，Agent 執行某個動作後，環境立即給予的回饋，這是一個即時的數值。例如，你在迷宮裡走對了一步，可能獲得 +10 的獎勵；如果走錯了一步，可能得到 -5 的懲罰。</p>
+<p><strong>價值（Value, 𝑉𝜋(𝑆)）</strong> 則是一個累積獎勵的期望值。它衡量的是當 Agent 處於某個狀態時，從該狀態出發，按照某個策略（例如 𝜋）行動，直到最終完成任務所能期望獲得的總獎勵。換句話說，價值是預測未來一系列行動的「總獎勵」，而不僅僅是當下那一步的即時獎勵。</p>
+<p>以剛剛迷宮的例子來看：</p>
+<ul>
+<li>當你在某個位置 𝑆𝑡 向正確的方向移動，你獲得一個 即時<strong>獎勵</strong>𝑟𝑡=+10。</li>
+<li><strong>價值</strong>𝑉𝜋(𝑆𝑡) 則考慮的是從 𝑆𝑡 開始，未來所有步驟的累積獎勵。例如，未來你可能會獲得50分的累積獎勵，因為你正走向出口。因此，這個位置 𝑆𝑡 的<strong>價值</strong>可能是 60（包含當前獎勵和未來預期獎勵）。</li>
+</ul>
+<p>總結來說：</p>
+<ul>
+<li><strong>獎勵</strong>是當下的回饋，即時的反應。</li>
+<li><strong>價值</strong>是從當前狀態出發，未來整體預期能獲得的累積獎勵。</li>
+</ul>
+<p>因此，價值可以被看作是多步驟 累積獎勵 的預期值，而獎勵是每一步的即時反應。</p>
+</details>
+<h2 id="_5">強化學習的算法家族</h2>
 <p>強化學習是一個龐大的家族，包含了許多不同的算法。例如，有些算法是通過行為的價值來選擇特定行為，像是使用表格學習的Q-Learning和SARSA，或是透過神經網路學習的Deep Q-Network（DQN）。另外還有直接輸出行為的Policy Gradient方法，或者那些透過構建虛擬環境來學習的算法。</p>
 <p><img alt="" src="https://smartmobilityalgorithms.github.io/book/_images/RL_2.png" /></p>
 <h3 id="model-based-rl-model-free-rl">Model-Based RL 與 Model-Free RL</h3>
@@ -642,13 +672,13 @@
       <nav class="md-footer-nav__inner md-grid">
         
         
-          <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一頁
                 </span>
-                [Day 2] 強化學習方法總覽
+                2.強化學習方法總覽
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -702,6 +732,12 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>

@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/2.強化學習方法總覽/">
+      
       
         <meta name="author" content="10程式中">
       
@@ -38,7 +40,7 @@
     
     
       
-        <title>[Day 2] 強化學習方法總覽 - 全民瘋AI系列 [強化學習]</title>
+        <title>2.強化學習方法總覽</title>
       
     
     
@@ -67,6 +69,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     
       
     
@@ -89,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#day-2" tabindex="1" class="md-skip">
+      <a href="#_1" tabindex="1" class="md-skip">
         跳轉到
       </a>
     
@@ -98,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -111,11 +115,11 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              全民瘋AI系列 [強化學習]
+              全民瘋AI系列 [深度強化學習]
             </span>
             <span class="md-header-nav__topic">
               
-                [Day 2] 強化學習方法總覽
+                2.強化學習方法總覽
               
             </span>
           
@@ -190,12 +194,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    全民瘋AI系列 [強化學習]
+    全民瘋AI系列 [深度強化學習]
   </label>
   
     <div class="md-nav__source">
@@ -247,8 +251,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
-      [Day 1] 什麼是強化學習？
+    <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-nav__link">
+      1.什麼是強化學習
     </a>
   </li>
 
@@ -268,11 +272,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        [Day 2] 強化學習方法總覽
+        2.強化學習方法總覽
       </label>
     
-    <a href="./" title="[Day 2] 強化學習方法總覽" class="md-nav__link md-nav__link--active">
-      [Day 2] 強化學習方法總覽
+    <a href="./" title="2.強化學習方法總覽" class="md-nav__link md-nav__link--active">
+      2.強化學習方法總覽
     </a>
     
       
@@ -441,8 +445,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
-      DRL Lecture 1: Policy Gradient
+    <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-nav__link">
+      3.1 Q-learning 概念
     </a>
   </li>
 
@@ -453,8 +457,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link">
-      [Day 4] 什麼是 Q Leaning？
+    <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link">
+      3.2 Q-learning 實作範例（ㄧ）
     </a>
   </li>
 
@@ -465,8 +469,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
-      5.Q Learning 範例一
+    <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-nav__link">
+      4.Deep Q-learning（DQN）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-nav__link">
+      5.Policy Gradient
     </a>
   </li>
 
@@ -628,7 +644,7 @@
               
                 
                 
-                <h1 id="day-2">[Day 2] 強化學習方法總覽</h1>
+                <h1 id="_1">強化學習方法總覽</h1>
 <h2 id="model-free-vs-model-based">Model-Free vs Model-Based</h2>
 <ul>
 <li>
@@ -797,7 +813,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -806,19 +822,19 @@
                 <span class="md-footer-nav__direction">
                   上一頁
                 </span>
-                [Day 1] 什麼是強化學習？
+                1.什麼是強化學習
               </span>
             </div>
           </a>
         
         
-          <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一頁
                 </span>
-                DRL Lecture 1: Policy Gradient
+                3.1 Q-learning 概念
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -872,6 +888,12 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>

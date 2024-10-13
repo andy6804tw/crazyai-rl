@@ -1,0 +1,1034 @@
+
+
+
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+      
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/4.DQN/">
+      
+      
+        <meta name="author" content="10程式中">
+      
+      
+        <meta name="lang:clipboard.copy" content="複製">
+      
+        <meta name="lang:clipboard.copied" content="已複製">
+      
+        <meta name="lang:search.language" content="ja">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="沒有符合的項目">
+      
+        <meta name="lang:search.result.one" content="找到 1 個符合的項目">
+      
+        <meta name="lang:search.result.other" content="找到 # 個符合的項目">
+      
+        <meta name="lang:search.tokenizer" content="[\uff0c\u3002]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>4.Deep Q-learning（DQN）</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#deep-q-learningdqn" tabindex="1" class="md-skip">
+        跳轉到
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              全民瘋AI系列 [深度強化學習]
+            </span>
+            <span class="md-header-nav__topic">
+              
+                4.Deep Q-learning（DQN）
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            打字進行搜尋
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    全民瘋AI系列 [深度強化學習]
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/andy6804tw/crazyai-rl" title="前往倉庫" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      基礎概念
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        基礎概念
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-nav__link">
+      1.什麼是強化學習
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-nav__link">
+      2.強化學習方法總覽
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      演算法/方法
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        演算法/方法
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-nav__link">
+      3.1 Q-learning 概念
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link">
+      3.2 Q-learning 實作範例（ㄧ）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        4.Deep Q-learning（DQN）
+      </label>
+    
+    <a href="./" title="4.Deep Q-learning（DQN）" class="md-nav__link md-nav__link--active">
+      4.Deep Q-learning（DQN）
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-value-function" title="[State value function] 如何估計狀態價值函數？" class="md-nav__link">
+    [State value function] 如何估計狀態價值函數？
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mc-based" title="蒙地卡羅方法 MC-Based" class="md-nav__link">
+    蒙地卡羅方法 MC-Based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#td-based" title="時間差分方法 TD-based" class="md-nav__link">
+    時間差分方法 TD-based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mc-td" title="比較 MC 和 TD 差異" class="md-nav__link">
+    比較 MC 和 TD 差異
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-action-value-function-q-function" title="[State-action value function] Q-function" class="md-nav__link">
+    [State-action value function] Q-function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-function" title="基於 Q-function 的強化學習過程" class="md-nav__link">
+    基於 Q-function 的強化學習過程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q" title="透過 Q 函數尋找更佳策略 𝜋′" class="md-nav__link">
+    透過 Q 函數尋找更佳策略 𝜋′
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning" title="Q-learning 的三個關鍵技巧" class="md-nav__link">
+    Q-learning 的三個關鍵技巧
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tip1-fixing-target-network" title="Tip1: 固定目標網路（Fixing Target Network）" class="md-nav__link">
+    Tip1: 固定目標網路（Fixing Target Network）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip2-epsilon-greedy-boltzmann-exploration" title="Tip2: 探索策略（Epsilon-Greedy 和 Boltzmann Exploration）" class="md-nav__link">
+    Tip2: 探索策略（Epsilon-Greedy 和 Boltzmann Exploration）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip3-replay-buffer" title="Tip3: 回放緩衝區（Replay Buffer）" class="md-nav__link">
+    Tip3: 回放緩衝區（Replay Buffer）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-q-learning" title="典型的 Deep Q-learning 演算法流程" class="md-nav__link">
+    典型的 Deep Q-learning 演算法流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-nav__link">
+      5.Policy Gradient
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">本頁目錄</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#state-value-function" title="[State value function] 如何估計狀態價值函數？" class="md-nav__link">
+    [State value function] 如何估計狀態價值函數？
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mc-based" title="蒙地卡羅方法 MC-Based" class="md-nav__link">
+    蒙地卡羅方法 MC-Based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#td-based" title="時間差分方法 TD-based" class="md-nav__link">
+    時間差分方法 TD-based
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mc-td" title="比較 MC 和 TD 差異" class="md-nav__link">
+    比較 MC 和 TD 差異
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#state-action-value-function-q-function" title="[State-action value function] Q-function" class="md-nav__link">
+    [State-action value function] Q-function
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-function" title="基於 Q-function 的強化學習過程" class="md-nav__link">
+    基於 Q-function 的強化學習過程
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#q" title="透過 Q 函數尋找更佳策略 𝜋′" class="md-nav__link">
+    透過 Q 函數尋找更佳策略 𝜋′
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q-learning" title="Q-learning 的三個關鍵技巧" class="md-nav__link">
+    Q-learning 的三個關鍵技巧
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tip1-fixing-target-network" title="Tip1: 固定目標網路（Fixing Target Network）" class="md-nav__link">
+    Tip1: 固定目標網路（Fixing Target Network）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip2-epsilon-greedy-boltzmann-exploration" title="Tip2: 探索策略（Epsilon-Greedy 和 Boltzmann Exploration）" class="md-nav__link">
+    Tip2: 探索策略（Epsilon-Greedy 和 Boltzmann Exploration）
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tip3-replay-buffer" title="Tip3: 回放緩衝區（Replay Buffer）" class="md-nav__link">
+    Tip3: 回放緩衝區（Replay Buffer）
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-q-learning" title="典型的 Deep Q-learning 演算法流程" class="md-nav__link">
+    典型的 Deep Q-learning 演算法流程
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" title="Reference" class="md-nav__link">
+    Reference
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="deep-q-learningdqn">Deep Q-learning（DQN）</h1>
+<p>Q-learning 是一種基於值的學習方法 (Value-Based Method)，它關注的是學習狀態-行為的值，而非直接學習策略 (Policy)。 透過這種方法，模型不會直接決策，而是通過 Critic 來評估當前行為的好壞。首先，我們要先來談談什麼是 Critic。</p>
+<p><img alt="" src="https://i.imgur.com/7N08GJJ.png" /></p>
+<p><strong>Critic 的功能</strong>：</p>
+<ul>
+<li>Critic 的工作是評估一個已經存在的 Actor（即決策者）的表現，而不是直接採取行為。具體來說，Critic 會計算 State Value Function 𝑉𝜋(𝑠)，該函數表示當前狀態 𝑠 下，Actor 𝜋 在這個狀態之後能夠累積多少預期獎勵。</li>
+<li>Critic 的輸出是依賴於當前的 Actor，並會根據 Actor 與環境的互動來評估後續可以累積多少的獎勵。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note<p>Critic 是與 Actor 綁定的，其主要功能是評估 Actor 的決策表現，但不會直接做出決策。Critic 的輸出結果反映了 Actor 在特定狀態下的預期表現。</p>
+</p>
+</div>
+<p>舉個例子，在遊戲 Space Invader 中，當畫面上還有很多敵人時，Actor 有很多機會消滅敵人，獲得高分，這時候 Critic 的評價 𝑉𝜋(𝑠) 會很高。相反，如果敵人所剩不多，或遊戲狀況不利，Critic 的評價值會較低，因為接下來獲得獎勵的機會有限。Critic 的評價依賴於當前的 Actor，如果 Actor 很弱，即便是相同的狀態，累積的獎勵也會較低。這強調了 Critic 的輸出不僅依賴於狀態，還取決於 Actor 的表現，兩者是密切相關的。</p>
+<p><img alt="" src="https://i.imgur.com/2rMldG0.png" /></p>
+<h2 id="state-value-function">[State value function] 如何估計狀態價值函數？</h2>
+<p>在估計狀態價值函數 𝑉𝜋(𝑆)時，有兩種常見的方法：Monte-Carlo（MC）方法和時間差分（Temporal Difference, TD）方法。</p>
+<h3 id="mc-based">蒙地卡羅方法 MC-Based</h3>
+<p>Monte-Carlo方法是一種直觀的做法，它的核心概念是讓Actor 𝜋 與環境互動，然後Critic觀察並統計從某一個狀態開始，直到整個遊戲結束後的累積回報。例如，當Actor 𝜋 在狀態 𝑆𝑎 時，累積的獎勵可能是 𝐺𝑎，在狀態 𝑆𝑏 時累積的獎勵可能是 𝐺𝑏。這樣，我們可以訓練一個網路來預測不同狀態下的累積獎勵值，這實際上就是一個迴歸問題，我們希望網路輸出與真實累積獎勵越接近越好。這種方法需要等到每一個遊戲回合結束後才能進行更新，因此在處理長遊戲回合時，可能會耗費大量時間。</p>
+<p><img alt="" src="https://i.imgur.com/IX4W1Ka.png" /></p>
+<details class="tip"><summary>簡單的例子來解釋 MC 方法</summary><p><h4>Monte Carlo 方法的例子</h4>
+假設你正在玩一個桌上遊戲，每回合結束時可以獲得一個分數。我們要估計在每一回合的不同狀態下能夠得到的累積分數。Monte Carlo 方法的核心思想是：你要等到整個遊戲（回合）結束後，才能計算這回合的最終分數，然後將這個分數反映到所有經歷過的狀態中。</p>
+<p><h5>假設遊戲過程如下：</h5>
+- <strong>起點（State A）</strong> → 行動 → <strong>中間狀態（State B）</strong> → 行動 → <strong>終點（State C）</strong>
+- 這場遊戲的最終分數是 <strong>5 分</strong>。</p>
+<p><h5>Monte Carlo 方法具體步驟：</h5>
+1. <strong>在 State A</strong>：
+- 你採取了某個行動，進入了 <strong>State B</strong>。
+2. <strong>在 State B</strong>：
+- 你採取了另一個行動，進入了 <strong>State C</strong>，並最終完成了這場遊戲。
+3. <strong>遊戲結束後</strong>，你知道這場遊戲最終獲得的分數是 <strong>5 分</strong>，這個就是累積的獎勵。</p>
+<p><h5>MC 如何計算價值：</h5>
+- <strong>State A 的價值</strong>：因為你從 State A 開始，最終累積的獎勵是 <strong>5 分</strong>，所以 Monte Carlo 方法會將這 <strong>5 分</strong>作為 <strong>State A</strong> 的價值更新。
+- <strong>State B 的價值</strong>：同理，雖然你是在 State B 過程中，但你同樣會將遊戲結束後的總獎勵 <strong>5 分</strong>更新到 <strong>State B</strong>。</p>
+<p><h4>總結：</h4>
+Monte Carlo 方法的特點在於<strong>遊戲結束後才進行更新</strong>，不管遊戲中間經歷了哪些狀態或採取了什麼行動，你在每一個狀態下所獲得的價值，都是根據這場遊戲的<strong>最終累積獎勵</strong>來進行更新的。</p>
+<p>在這個例子中：</p>
+<ul>
+<li><strong>State A</strong> 和 <strong>State B</strong> 都會更新為 <strong>5 分</strong>，因為整場遊戲的最終獎勵是 <strong>5 分</strong>。</li>
+</ul>
+<p>這種方法的優點是直觀且簡單，但缺點是必須等到遊戲結束才能更新，這對於那些遊戲回合非常長的情況可能不是很高效，這也是為什麼 Temporal Difference (TD) 方法會在這裡派上用場，因為 TD 不需要等遊戲結束就可以進行更新。</p>
+</details>
+<h3 id="td-based">時間差分方法 TD-based</h3>
+<p>相對的，時間差分（TD）方法則不需要等待遊戲結束就可以進行更新。在這種方法中，當Actor 𝜋 在某個狀態 𝑆𝑡 行一個動作 𝐴𝑡 後，會立即獲得一個即時獎勵 𝑟𝑡，並轉移到下一個狀態 𝑆𝑡+1。根據這個轉移，我們可以直接根據當前狀態的價值和下一個狀態的價值來進行更新。具體來說，TD方法認為當前狀態 𝑆𝑡 的價值應該等於即時獎勵 𝑟𝑡 加上下一個狀態 𝑆𝑡+1 的價值。訓練時，網路會根據這種差異進行更新，並不需要等到整個遊戲結束。這使得TD方法能夠更快地進行更新，特別適合處理長期回合的遊戲。後續介紹的 Q-Learning 就會使用 TD 的方法。</p>
+<p><img alt="" src="https://i.imgur.com/3duepvH.png" /></p>
+<p>在進行訓練時，我們並不是直接估算價值函數 𝑉，而是希望透過學習使其符合特定的關係式。具體來說，我們將當前狀態 𝑆𝑡 丟入網路中，得到 𝑉(𝑆𝑡)，然後將下一個狀態 𝑆𝑡+1 也丟入網路，得到 𝑉(𝑆𝑡+1)。根據這個關係式， 𝑉(𝑆𝑡)−𝑉(𝑆𝑡+1) 應該等於當前步驟的獎勵 𝑅𝑡。因此，我們會設定一個損失函數，讓這兩者的差異（即 𝑉(𝑆𝑡)−𝑉(𝑆𝑡+1) 和 𝑅𝑡 的差距）越小越好。隨著這樣的訓練過程，我們可以逐步優化網路的參數，讓網路更準確地學習到這個價值函數 𝑉。</p>
+<details class="tip"><summary>簡單的例子來解釋 TD 方法</summary><p>假設我們在玩一個迷宮遊戲，每次我們做出一個動作（例如向前走一步），就會獲得即時獎勵 𝑟𝑡，這個獎勵可能是正的（我們走對了方向），也可能是負的（我們走錯了方向）。同時，我們會從一個狀態 𝑆𝑡 轉移到下一個狀態 𝑆𝑡+1。</p>
+<p>TD 方法的核心思想是，當你在 𝑆𝑡 的時候，你可以估計該狀態的價值 𝑉𝜋(𝑆𝑡)，但你不需要等到整個遊戲結束。你可以馬上利用你轉移到的下一個狀態 𝑆𝑡+1 的價值來更新當前狀態 𝑆𝑡 的估計值。</p>
+<p>例如，當你從 𝑆𝑡 移動到 𝑆𝑡+1，你會得到一個即時獎勵 𝑟𝑡。這時，你可以說：𝑆𝑡 的價值應該是 𝑆𝑡+1 的價值加上你剛剛得到的獎勵 𝑟𝑡，這就是公式：</p>
+<div class="arithmatex">\[ V^{\pi}(S_t) = V^{\pi}(S_{t+1}) + r_t \]</div>
+<p>換句話說，當前的狀態 𝑆𝑡 價值，應該是從 𝑆𝑡+1 繼續走下去的價值，加上你剛剛獲得的這個獎勵。這樣，我們可以不必等到遊戲結束就可以更新狀態的價值，並且根據每一次的轉移，逐步學習狀態的價值。</p>
+<p>例如，假設你在迷宮的某一點 𝑆𝑡 做出一個決策後馬上向正確的方向前進並獲得了 𝑟𝑡=+10 的獎勵，而接下來的狀態 𝑆𝑡+1 又很接近出口，它的價值很高（假設 𝑉𝜋(𝑆𝑡+1)=50）。那麼，當前的狀態 𝑆𝑡 的價值就可以更新為：</p>
+<p>𝑉𝜋(𝑆𝑡)=50+10=60</p>
+<p>這樣你可以更快速地學到該狀態 𝑆𝑡 的價值，而不必等到遊戲結束。 TD 方法的好處在於它可以在遊戲過程中逐步更新價值估計，而不需要等到整個遊戲回合結束。</p>
+</details>
+<details class="tip"><summary>補充說明</summary><p>當我們提到價值 𝑉𝜋(𝑆𝑡) 時，它考慮的是從 狀態 𝑆𝑡 開始，根據策略 𝜋 所能預期獲得的未來所有步驟的累積獎勵。</p>
+<p>具體來說，這個累積獎勵包括從 𝑆𝑡 開始的 當前獎勵 𝑟𝑡，以及接下來從 𝑆𝑡+1、𝑆𝑡+2 等未來各個狀態所獲得的所有獎勵。也就是說，它不僅僅指下一個狀態 𝑆𝑡+1 的獎勵，而是 從 𝑆𝑡 開始到最終結束時的所有獎勵的期望值。</p>
+<p>我們可以用這個公式來表達：</p>
+<div class="arithmatex">\[ 
+V^\pi(S_t) = \mathbb{E}_\pi [ r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots ]
+\]</div>
+<p>這裡，𝑟𝑡 是當前的即時獎勵，𝛾 是折扣因子（通常小於 1），用來減少未來獎勵的影響。所以，價值 𝑉𝜋(𝑆𝑡) 是從當前狀態 𝑆𝑡 開始，依據策略 𝜋 所能預期獲得的所有未來獎勵的加權和。</p>
+<p>實際上，公式 γrt+1+γ2rt+2+⋯ 可以等同於 𝑉𝜋(𝑆𝑡+1) ，因為它代表的是從狀態 𝑆𝑡+1 開始，未來所有步驟的累積折扣獎勵。因此，我們可以將未來的累積獎勵這部分總結為：</p>
+<div class="arithmatex">\[ V^{\pi}(S_t) = r_t + \gamma V^{\pi}(S_{t+1}) \]</div>
+<p>這裡，𝑟 𝑡是在當前狀態 𝑆𝑡 獲得的即時獎勵，而 𝑉𝜋(𝑆𝑡+1) 是從狀態 𝑆𝑡+1 開始，根據策略 𝜋 所能預期獲得的累積獎勵（包括從 𝑆𝑡+1 開始的即時獎勵及其後續獎勵）。這個關係式揭示了 Temporal-Difference (TD) 的核心概念，即我們可以通過<strong>當前獎勵</strong> 𝑟𝑡 和<strong>下一個狀態的價值</strong> 𝑉𝜋(𝑆𝑡+1) 來估算當前狀態 𝑆𝑡 的價值 𝑉𝜋(𝑆𝑡)。</p>
+</details>
+<h3 id="mc-td">比較 MC 和 TD 差異</h3>
+<p>MC 和 TD 各有優劣。MC 方法直覺簡單，基於整場遊戲的累積獎勵來更新，但其變異性較大，且需要完整的遊戲回合數據。TD 方法則是基於當前步驟的獎勵和下一步的估計來更新，變異性較小且能即時更新，但可能會有偏差。TD 通常在較長、較複雜的情境中更有效率，而 MC 則適合簡單、回合較短的問題。</p>
+<table>
+<thead>
+<tr>
+<th><strong>比較項目</strong></th>
+<th><strong>Monte Carlo (MC)</strong></th>
+<th><strong>Temporal Difference (TD)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>更新時間</strong></td>
+<td>需要等到遊戲結束後，才能累積更新值</td>
+<td>可以在每一步更新</td>
+</tr>
+<tr>
+<td><strong>數據利用率</strong></td>
+<td>只在遊戲結束時利用全部數據</td>
+<td>可以在每次狀態轉移後立即更新</td>
+</tr>
+<tr>
+<td><strong>Variance (變異性)</strong></td>
+<td>變異性較大，因為累積了整場遊戲的隨機變量，結果可能波動大</td>
+<td>變異較小，因為每一步的更新只依賴於當前觀察到的獎勵</td>
+</tr>
+<tr>
+<td><strong>Bias (偏差)</strong></td>
+<td>偏差較小，因為使用最終的累積獎勵，較能反映真實值</td>
+<td>可能會有較大的偏差，因為依賴於未來的估計值，而非最終結果</td>
+</tr>
+<tr>
+<td><strong>需求的經驗</strong></td>
+<td>需要完整的遊戲回合數據，無法即時更新</td>
+<td>可以逐步學習，即時更新，無需整個遊戲回合</td>
+</tr>
+<tr>
+<td><strong>收斂速度</strong></td>
+<td>通常較慢，因為需要等待整個回合結束才能更新</td>
+<td>通常較快，因為每步驟都會更新</td>
+</tr>
+<tr>
+<td><strong>適用情境</strong></td>
+<td>適合情境簡單、遊戲長度較短的問題</td>
+<td>適合情境較為複雜、遊戲長度較長的問題</td>
+</tr>
+</tbody>
+</table>
+<p>MC 和 TD 各有優劣。MC 方法直覺簡單，基於整場遊戲的累積獎勵來更新，但其變異性較大，且需要完整的遊戲回合數據。TD 方法則是基於當前步驟的獎勵和下一步的估計來更新，變異性較小且能即時更新，但可能會有偏差。TD 通常在較長、較複雜的情境中更有效率，而 MC 則適合簡單、回合較短的問題。</p>
+<div class="admonition note">
+<p class="admonition-title">Note<p>MC方法更適合完整回合的回報計算，而TD方法則更具即時性和效率。兩者的選擇依賴於應用場景和遊戲的長度。</p>
+</p>
+</div>
+<p>從以下例子可以發現，即便是用相同的資料集，MC、TD兩種方法所估測出來的結果是不一樣的。例子中有 8 個 episode，每個 episode 包含兩個狀態 𝑠𝑎 和 𝑠𝑏，以及相應的獎勵 𝑟。</p>
+<p><img alt="" src="https://i.imgur.com/rSJB8X5.png" /></p>
+<ol>
+<li>
+<p><strong>MC 方法</strong>：</p>
+<p>Monte Carlo 方法在計算 <span class="arithmatex">\(V^\pi(s_a)\)</span> 的時候，使用完整 episode 的最終累積獎勵。由於狀態 <span class="arithmatex">\(s_a\)</span> 在每次的 episode 結束時都得到的累積獎勵是 0，因此 Monte Carlo 給出的 <span class="arithmatex">\(V^\pi(s_a)\)</span> 是 0。</p>
+</li>
+<li>
+<p><strong>TD 方法</strong>：</p>
+<p>Temporal Difference 方法則更靈活，利用當前的獎勵和下一個狀態的估計來更新價值函數。根據投影片中的例子，狀態 <span class="arithmatex">\(s_b\)</span> 的價值已經被計算為 3/4，因此 TD 使用這個值來計算 <span class="arithmatex">\(V^\pi(s_a)\)</span>，即 <span class="arithmatex">\(V^\pi(s_a) = V^\pi(s_b) + r = 3/4 + 0 = 3/4\)</span>。</p>
+</li>
+</ol>
+<h2 id="state-action-value-function-q-function">[State-action value function] Q-function</h2>
+<p>接下來我們要介紹另一種 <strong>Critic</strong>，稱為 <strong>Q-function</strong>，也叫做 <strong>State-action value function</strong>。在我們之前討論的 <strong>State value function</strong> 中，輸入僅為一個狀態（state），根據該狀態預測從該點開始的累積獎勵期望值（expected cumulative reward）。然而，在 <strong>Q-function</strong> 中，輸入變成了一對 <strong>State 和 Action（狀態與行動的組合）</strong>，目的是估計在某個狀態 <span class="arithmatex">\( s \)</span> 下，強制執行某個行動 <span class="arithmatex">\( a \)</span>，然後讓 Actor <span class="arithmatex">\( \pi \)</span> 繼續操作下去後，最終能獲得的累積獎勵的期望值。</p>
+<p>需要注意的是，<strong>Q-function</strong> 假設我們在狀態 <span class="arithmatex">\( s \)</span> 下強制執行某個行為 <span class="arithmatex">\( a \)</span>，不管 Actor <span class="arithmatex">\( \pi \)</span> 自己會不會選擇這個行為。在狀態 <span class="arithmatex">\( s \)</span> 下，我們強制執行行為 <span class="arithmatex">\( a \)</span>，之後讓 Actor <span class="arithmatex">\( \pi \)</span> 繼續操作至遊戲結束，這樣得到的累積獎勵才是我們所定義的 <strong>Q-value</strong>。舉例來說，如果 Actor <span class="arithmatex">\( \pi \)</span> 在狀態 <span class="arithmatex">\( s \)</span> 下通常不會選擇行動 <span class="arithmatex">\( a \)</span>，但我們強制讓它執行 <span class="arithmatex">\( a \)</span>，之後再讓 Actor 自動運行，這樣才能得到對應的 <strong>Q-value</strong>。</p>
+<p><strong>Q-function</strong> 有兩種常見的表示方式：</p>
+<ol>
+<li>
+<p><strong>State-action pair 作為輸入</strong>：輸入是狀態 <span class="arithmatex">\( s \)</span> 和行為 <span class="arithmatex">\( a \)</span> 的組合，輸出是一個標量（scalar），代表在該狀態下執行該行為後所能期望的累積獎勵。</p>
+</li>
+<li>
+<p><strong>僅 State 作為輸入</strong>：如果行為（action）是離散的，輸入可以僅為狀態 <span class="arithmatex">\( s \)</span>，而輸出會是對應每個可能行為的 Q 值。例如，假設有三個可能的行為「向左」、「向右」和「開火」，則 Q-function 的輸出會是三個對應這些行為的 <strong>Q-value</strong>，即 <span class="arithmatex">\( Q^{\pi}(s, \text{left}) \)</span>、<span class="arithmatex">\( Q^{\pi}(s, \text{right}) \)</span> 和 <span class="arithmatex">\( Q^{\pi}(s, \text{fire}) \)</span>。</p>
+</li>
+</ol>
+<p><img alt="" src="https://i.imgur.com/LdLQjTT.png" /></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>這種 <strong>Q-function</strong> 的第二種表示方式僅適用於 <strong>離散行為空間</strong>（discrete action space）。如果行為是連續的或無法窮舉，則必須使用第一種方法，將 <strong>State 和 Action</strong> 直接作為輸入，而不是僅使用狀態。</p>
+</div>
+<p>以下範例使用了一個桌球遊戲的範例來說明 State-Action Value Function（狀態-行動價值函數）的概念。投影片展示了不同時間點的遊戲畫面，以及對應的行動價值（Q 值）分佈，這些 Q 值代表在某個狀態下執行某個行為後，所預期的累積獎勵。</p>
+<p><img alt="" src="https://i.imgur.com/uQGOrK5.png" /></p>
+<p><strong>1. 第一張圖</strong>：在這個時間點，無論選擇「不動」(NO-OP)、「上移」(UP) 或「下移」(DOWN) 行動，預期得到的獎勵都差不多，因為球還沒有靠近需要擊球的位置，因此三個行動的 Q 值接近，沒有明顯的優勢。</p>
+<p><strong>2. 第二張圖</strong>：球已經往上彈起，這時候如果選擇「上移」，預期的獎勵會更高，這個行為能夠增加成功接球的機會。因此，「上移」的 Q 值高於其他行動，表示這是此時最優的行為選擇。</p>
+<p><strong>3. 第三張圖</strong>：這個場景與第二張圖類似，球仍在往上移動。如果不選擇「上移」的行為，將無法接到球，導致失去獎勵。因此，「上移」的 Q 值仍然是最高的，強烈建議在此時執行「上移」。</p>
+<p><strong>4. 第四張圖</strong>：球已經彈回來且遊戲勝利了。在這個狀態下，無論選擇哪一個行動，對遊戲結束的結果沒有太大影響。因此，不同行動的 Q 值差異不大，表示此時任何行動都不會改變結果。</p>
+<p>大家應該知道，Deep Reinforcement Learning 最早受到廣泛注意的，是 DeepMind 發表在 Nature 上的一篇經典論文<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。在這篇論文中，提出了DQN (Deep Q-Network) 的方法，展示了 AI 如何通過這種技術玩 Atari 遊戲，並且在多個遊戲中大幅超越人類玩家。這張圖其實就是那篇論文中的一個示例，展示了 DQN 在 Atari 遊戲中的學習和決策過程，具體說明了 AI 在不同遊戲狀態下，根據累積獎勵進行的行動選擇，以及如何通過深度學習強化這些選擇，使其表現得更為優異。</p>
+<h2 id="q-function">基於 Q-function 的強化學習過程</h2>
+<p>在強化學習中，雖然表面上我們學習 Q-function 是為了評估某個行動 (action) 的好壞，但實際上，只要我們掌握了 Q-function，就能進行決策，完成強化學習的過程。</p>
+<p><img alt="" src="https://i.imgur.com/HrgvinF.png" /></p>
+<p>其主要流程如下：假設我們有一個初始的 actor 策略 π，這個策略一開始可能表現很差，甚至是隨機的，但這並不影響整體流程。我們讓這個策略 π 與環境互動，並蒐集數據<code>(黃色區塊)</code>。接著，我們學習該策略 π 的 Q-value，也就是該策略在某一狀態下 (state) 強制執行某一行動後，期望獲得的累積獎勵<code>(綠色區塊)</code>。我們可以使用 TD (Temporal Difference) 或 MC (Monte Carlo) 來進行這個學習。</p>
+<p>學習出一個 Q-function 後，接下來的神奇之處在於：只要我們能學到策略 π 的 Q-function，就可以找到一個新的策略 π′。這個新的策略 π′ 一定會比原來的策略 π 更好，這裡的「更好」稍後會具體定義。重點是，透過學習 Q-function，保證可以持續找到更好的策略 π′<code>(藍色區塊)</code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在這個循環過程中，我們不斷更新策略：每找到一個更好的策略 π′，就用它來取代原本的策略 π，並根據新策略重新學習 Q-function，然後再找到一個比 π′ 更好的策略。如此循環下去，策略會不斷優化，直到最終獲得最佳的行動決策。</p>
+</div>
+<h3 id="q">透過 Q 函數尋找更佳策略 𝜋′</h3>
+<p>當我們說到新策略 <span class="arithmatex">\( \pi' \)</span> 一定會比舊策略 <span class="arithmatex">\( \pi \)</span> 好時，這裡的「好」是指對所有可能的狀態 <span class="arithmatex">\( S \)</span> 而言，新策略 <span class="arithmatex">\( \pi' \)</span> 的價值函數 <span class="arithmatex">\( V^{\pi'}(S) \)</span> 必定大於或等於舊策略 <span class="arithmatex">\( V^{\pi}(S) \)</span>。也就是說，當我們在同一個狀態 <span class="arithmatex">\( S \)</span> 下，若繼續使用舊策略 <span class="arithmatex">\( \pi \)</span> 和環境互動，我們預期的回報（reward）一定會比使用新策略 <span class="arithmatex">\( \pi' \)</span> 獲得的回報要低。因此，對於任何狀態下，使用 <span class="arithmatex">\( \pi' \)</span> 互動的預期回報都會更高，這表示 <span class="arithmatex">\( \pi' \)</span> 是一個比 <span class="arithmatex">\( \pi \)</span> 更好的策略。</p>
+<p>那麼如何找到這個新的策略 <span class="arithmatex">\( \pi' \)</span> 呢？其實，概念非常簡單：只要我們已經學習到策略 <span class="arithmatex">\( \pi \)</span> 的 Q 函數，接著可以通過選擇讓 Q 值最大的行為 <span class="arithmatex">\( a \)</span> 來決定新策略 <span class="arithmatex">\( \pi' \)</span> 在每個狀態下應該採取的行為。具體來說，在給定狀態 <span class="arithmatex">\( S \)</span> 的情況下，我們將所有可能的行為 <span class="arithmatex">\( A \)</span> 代入 Q 函數，找到使 Q 值最大的那個行為，這就是新策略 <span class="arithmatex">\( \pi' \)</span> 會選擇的行為。</p>
+<p>需要注意的是，Q 函數的定義是在給定狀態 <span class="arithmatex">\( S \)</span> 並強制採取某個行為 <span class="arithmatex">\( a \)</span> 之後，根據策略 <span class="arithmatex">\( \pi \)</span> 與環境互動所得到的預期回報。因此，雖然 <span class="arithmatex">\( \pi \)</span> 和 <span class="arithmatex">\( \pi' \)</span> 在同一狀態下可能選擇不同的行為，但 <span class="arithmatex">\( \pi' \)</span> 通過 Q 函數選擇的行為總是能帶來更高的回報。</p>
+<p>值得一提的是，<span class="arithmatex">\( \pi' \)</span> 並不是由另一個網路單獨決定的，而是直接從 Q 函數推導出來的。只要我們有了 Q 函數，就能找到新策略 <span class="arithmatex">\( \pi' \)</span> 而無需額外的策略網路。然而，當行為 <span class="arithmatex">\( A \)</span> 是連續型時，解決 argmax 的問題會變得複雜，但這是後續需要解決的問題。在離散情況下，我們可以簡單地將所有選項一一帶入，選擇 Q 值最大的行為即可。</p>
+<details class="tip"><summary>補充說明</summary><p>上述介紹了如何通過 Q-Learning 的方式，在學習到 Q-function 後找到一個比當前策略更好的策略（actor）。主要有以下幾個重點：</p>
+<p><strong>1.學習新的策略</strong>：給定 Q-function <span class="arithmatex">\( Q^{\pi}(s, a) \)</span>，可以找到一個新的策略 <span class="arithmatex">\( \pi' \)</span>，這個策略 <span class="arithmatex">\( \pi' \)</span> 必須比當前的策略 <span class="arithmatex">\( \pi \)</span> 更好，也就是對所有狀態 <span class="arithmatex">\( s \)</span> 來說，新的策略 <span class="arithmatex">\( V^{\pi'}(s) \)</span> 必須大於或等於 <span class="arithmatex">\( V^{\pi}(s) \)</span>。</p>
+<p><strong>2. 策略更新公式</strong>：新的策略 <span class="arithmatex">\( \pi'(s) \)</span> 可以通過選擇在當前狀態 <span class="arithmatex">\( s \)</span> 下能夠最大化 Q-function 的 action 來決定，即： </p>
+<div class="arithmatex">\[
+\pi'(s) = \text{arg max}_{a} Q^{\pi}(s, a)
+\]</div>
+<p>這意味著，新策略是基於當前學到的 Q-function，選擇能夠獲得最大 Q 值的行為。</p>
+<p><strong>3. 策略簡單性</strong>：更新後的新策略 <span class="arithmatex">\( \pi' \)</span> 不需要額外的參數，因為它完全依賴於 Q-function 的結果來進行選擇。</p>
+<p><strong>4. 連續動作的限制</strong>：這種方法目前只適用於離散的行為選擇，如果是連續動作的問題，這種方式則不適用，需要進一步解決。</p>
+<p>以上強調了在給定 Q-function 後，如何通過選擇最大 Q 值的行為來不斷更新並提升策略的過程。</p>
+</details>
+<details class="tip"><summary>推導證明新策略𝜋′的價值高於原策略𝜋</summary><p>這張投影片描述了通過 Q-learning 如何使用 Q-function 來不斷地改進策略，並且數學上證明了新的策略 <span class="arithmatex">\( \pi' \)</span> 的價值會比原策略 <span class="arithmatex">\( \pi \)</span> 更好。</p>
+<p><img alt="" src="https://i.imgur.com/jDlKpD3.png" /></p>
+<p><strong>1.策略更新</strong>：投影片首先指出了策略更新的方式：</p>
+<div class="arithmatex">\[
+\pi'(s) = \arg \max_a Q^{\pi}(s, a)
+\]</div>
+<p>這表示我們在當前狀態 <span class="arithmatex">\( s \)</span> 中，選擇能夠使 Q 值最大的行為作為新策略 <span class="arithmatex">\( \pi' \)</span>。</p>
+<p><strong>2.策略比較</strong>：接下來說明了新策略 <span class="arithmatex">\( \pi' \)</span> 將比舊策略 <span class="arithmatex">\( \pi \)</span> 更好，因為：</p>
+<div class="arithmatex">\[
+V^{\pi'}(s) \geq V^{\pi}(s), \quad \forall s
+\]</div>
+<p>這表示新策略的價值函數 <span class="arithmatex">\( V^{\pi'}(s) \)</span> 必然大於等於舊策略的價值 <span class="arithmatex">\( V^{\pi}(s) \)</span>。</p>
+<p><strong>3.價值函數與 Q 值的關係</strong>：</p>
+<div class="arithmatex">\[
+V^{\pi}(s) = Q^{\pi}(s, \pi(s)) \leq \max_a Q^{\pi}(s, a) = Q^{\pi}(s, \pi'(s))
+\]</div>
+<p>表示狀態 <span class="arithmatex">\( s \)</span> 下的策略價值函數等於該策略選擇的行為對應的 Q 值，而新的策略 <span class="arithmatex">\( \pi'(s) \)</span> 所對應的 Q 值必然不小於原策略的 Q 值。</p>
+<p><strong>4.價值函數的不等式遞推</strong>：
+接下來，投影片展開了如何基於策略更新的不等式進行遞推，推導出：</p>
+<div class="arithmatex">\[
+V^{\pi}(s) \leq Q^{\pi}(s, \pi'(s)) = E[r_{t+1} + V^{\pi}(s_{t+1}) | s_t = s, a_t = \pi'(s)]
+\]</div>
+<p>並進一步遞推，將後續狀態的期望累積獎勵不斷展開，直到整個過程都被考慮進去。</p>
+<p><strong>結論</strong>：最終這個遞推的過程表明，新的策略 <span class="arithmatex">\( \pi' \)</span> 必然會讓後續累積的獎勵不小於當前策略，因此保證了策略改進的過程是有效的。</p>
+</details>
+<h2 id="q-learning">Q-learning 的三個關鍵技巧</h2>
+<p>在進一步探討 Q-learning 的進階應用之前，我們將介紹三個關鍵技巧，這些技巧能有效提升模型的學習效果與穩定性。不僅幫助我們解決傳統 Q-learning 中的一些常見挑戰，還能進一步提升演算法的效能。接下來，我們將分別介紹：</p>
+<p>1.<strong>固定目標網路（Fixing Target Network）</strong>：用於提升學習的穩定性，避免在學習過程中目標值頻繁變動。</p>
+<p>2.<strong>探索策略（Epsilon-Greedy 和 Boltzmann Exploration）</strong>：提供更好的探索機制，在 exploitation 和 exploration 之間找到平衡。</p>
+<p>3.<strong>回放緩衝區（Replay Buffer）</strong>：用於提升訓練效率，並確保批次數據中的多樣性，避免數據相關性導致的過擬合。</p>
+<h3 id="tip1-fixing-target-network">Tip1: 固定目標網路（Fixing Target Network）</h3>
+<p>在 <strong>Q-learning</strong> 中，一個常用的技巧是引入 <strong>target network</strong> (目標網路)。這個概念的核心是基於 <strong>Temporal Difference (TD)</strong> 的更新方式。當我們在學習 <strong>Q-function</strong> 時，會使用 TD 的方法來估計 Q 值之間的關聯。具體來說，假設在狀態 <span class="arithmatex">\( s_t \)</span> 採取了動作 <span class="arithmatex">\( a_t \)</span>，並得到了回報 <span class="arithmatex">\( r_t \)</span>，系統隨後進入了下一個狀態 <span class="arithmatex">\( s_{t+1} \)</span>。根據 <strong>Q-function</strong>，我們可以預測 <span class="arithmatex">\( Q^\pi(s_t, a_t) \)</span> 和 <span class="arithmatex">\( Q^\pi(s_{t+1}, \pi(s_{t+1})) \)</span> 之間的差值應該是 <span class="arithmatex">\( r_t \)</span>。也就是說，狀態轉移後得到的回報會影響這兩個 <strong>Q</strong> 值之間的關聯性。</p>
+<p><img alt="" src="https://i.imgur.com/4R6H9pd.png" /></p>
+<p>如圖所示，我們的目標是學習這些 <strong>Q</strong> 值之間的差距，並進行更新。透過將 <strong>Q</strong> 值的變化與實際觀察到的回報 <span class="arithmatex">\( r_t \)</span> 相結合，<strong>Q-learning</strong> 可以在每次狀態轉移時學習並優化決策。</p>
+<p>在 Q-learning 的學習過程中，我們通常會遇到一個問題，就是當我們嘗試使用 TD 方法進行學習時，target 值會持續變動。這導致模型在訓練時難以穩定學習，因為模型每次的回傳值 (target) 是動態的，這樣的情況會讓學習過程變得不穩定。圖中展示了一個解決此問題的策略，稱為 Target Network。</p>
+<p>具體來說，Target Network 是一個固定的網路，它負責生成 target 值。在模型學習的過程中，左邊的 Q 函數會進行更新，而右邊的 Target Network 則保持不變。這意味著我們只對左邊的 Q 函數進行參數調整，並通過最小化預測值與固定 target 之間的誤差來學習。</p>
+<p><img alt="" src="https://i.imgur.com/2M3KZb7.png" /></p>
+<p>Target Network 被固定住，因此模型學習的目標值 (例如 <span class="arithmatex">\(r_t + Q^{\pi}(s_{t+1}, \pi(s_{t+1}))\)</span>) 也會保持固定。當我們完成多次 Q 函數的更新後，再將 Target Network 的參數替換為更新後的 Q 函數。這樣可以避免兩個 Q 函數同時更新，避免學習過程中的不穩定情況。這樣的設計讓我們可以穩定進行迴歸操作，並且不斷縮小預測值與固定 target 之間的誤差，進一步提升學習的穩定性和效率。</p>
+<h3 id="tip2-epsilon-greedy-boltzmann-exploration">Tip2: 探索策略（Epsilon-Greedy 和 Boltzmann Exploration）</h3>
+<p>在 Q-learning 中，第二個常用的技巧是探索策略 (Exploration)。這裡提到了當我們依賴 Q-function 決定行為時，policy 會根據 Q-function 的值來選擇對應的動作。具體來說，對於給定的一個 state，Q-learning 會遍歷所有可能的 actions，並選擇 Q 值最大的 action 作為當前的行為。這種方法的主要問題在於，如果我們總是選擇同一個 Q 值最大的行為，那麼我們將永遠不會探索其他可能性較小但潛在更好的行為。</p>
+<p>投影片中展示了這一問題的例子：在某個 state 下，假設 action 2 的 Q 值是 1，而 action 1 和 action 3 的 Q 值都是 0，這樣我們將永遠選擇 action 2，導致我們無法探索其他行為。這樣的策略對於數據收集並不是一個好的方法，因為我們需要在每個 state 下嘗試所有的行為，這樣才能更好地估計每個 action 的 Q 值。</p>
+<p><img alt="" src="https://i.imgur.com/N1gGLf6.png" /></p>
+<p>為了解決這個問題，我們引入了兩種探索策略：</p>
+<ol>
+<li><strong>Epsilon Greedy</strong>：Epsilon Greedy 策略允許我們在 1-ε 的機率下選擇 Q 值最大的行為，但在 ε 的機率下隨機選擇行為。這樣我們可以確保偶爾嘗試其他行為，避免陷入只選擇單一行為的困境。隨著學習過程的進行，ε 通常會逐漸遞減，因為隨著時間推移，我們對各個行為的 Q 值會變得更加準確，因此減少探索的必要性。</li>
+</ol>
+<p><img alt="" src="https://i.imgur.com/jwcWxh0.png" /></p>
+<ol>
+<li><strong>Boltzmann Exploration</strong>：Boltzmann Exploration 策略則是根據每個行為的 Q 值生成一個概率分佈。Q 值越高的行為被選擇的概率越大，但 Q 值較低的行為也有一定的機率被選擇。這是通過對每個 Q 值取 exponential，然後將它們 normalize 成一個機率分佈來實現的。這種方法保證了我們能夠根據每個行為的好壞來進行權衡探索。</li>
+</ol>
+<p><img alt="" src="https://i.imgur.com/yxo1Mmw.png" /></p>
+<details class="tip"><summary>Exploration vs. Exploitation</summary><p>在強化學習中，平衡 Exploration 和 Exploitation 是非常關鍵的。過多的探索可能會導致浪費時間在不好的選項上，而過度依賴過去的經驗（利用）則可能會錯過更優的潛在選項。</p>
+<ul>
+<li>
+<p><strong>Exploration (探索)</strong>：指的是嘗試新的行為，尋找未知的可能性，像是踩點、測試新選擇。在生活中，探索就像每天去不同的餐廳嘗試新的菜色，看看哪家餐廳會有更好的食物或體驗。我們不知道結果如何，但透過不斷的嘗試，能夠發現更好的選擇。</p>
+</li>
+<li>
+<p><strong>Exploitation (利用)</strong>：這是基於已知的經驗，選擇最好的行為，專注於從過去的成功經驗中獲得最大化的回報。在生活中的例子是根據過去吃過的餐廳，選擇一家已經知道好吃、服務好且滿意的餐廳，這樣可以確保當下的享受或收穫是最好的。</p>
+</li>
+</ul>
+<p>因此，在強化學習中，需要找到一個適當的策略，在探索新選擇和利用已有的好經驗之間找到平衡。</p>
+</details>
+<h3 id="tip3-replay-buffer">Tip3: 回放緩衝區（Replay Buffer）</h3>
+<p>Replay Buffer 是強化學習中的一個重要技巧，用來提高訓練效率和數據的多樣性。當我們的策略 <span class="arithmatex">\( \pi \)</span> 與環境互動時，會產生大量的經驗 (例如在狀態 <span class="arithmatex">\( s_t \)</span> 採取行動 <span class="arithmatex">\( a_t \)</span> 得到獎勵 <span class="arithmatex">\( r_t \)</span> 並轉移到下一個狀態 <span class="arithmatex">\( s_{t+1} \)</span>)，這些經驗會被儲存在一個稱為 buffer 的地方。這個 buffer 是有限的，因此當 buffer 滿了時，最舊的經驗會被替換掉。</p>
+<p>儲存在 buffer 裡的經驗並不全是來自於當前的策略，因為策略會隨著時間進行更新。然而，這樣的設計可以有兩個重要的好處：</p>
+<ol>
+<li>
+<p><strong>提高樣本效率</strong>：在實際強化學習中，與環境互動的步驟是最花時間的過程。透過 replay buffer，我們可以反覆使用之前收集到的經驗，減少不必要的環境互動次數，提升訓練效率。</p>
+</li>
+<li>
+<p><strong>增加數據的多樣性</strong>：在訓練神經網路時，我們希望每個 batch 的數據越多樣化越好，因為單一性質的數據容易導致模型過度擬合。當 replay buffer 裡的經驗來自於不同的策略時，所選出的批次數據會更加多樣，從而有助於提升模型的泛化能力。</p>
+</li>
+</ol>
+<p>儘管這些經驗來自於不同的策略 (這是一個 off-policy 的特徵)，理論上這種方式依然是有效的。這是因為我們不只是依賴一整條路徑，而是從 buffer 中隨機取樣個別的經驗來更新 Q-function。</p>
+<p><img alt="" src="https://i.imgur.com/TU16W4J.png" /></p>
+<h2 id="deep-q-learning">典型的 Deep Q-learning 演算法流程</h2>
+<p>Q-learning 是一種通過與環境互動來學習最佳策略的強化學習演算法。它的核心步驟包括初始化兩個 Q-function（<span class="arithmatex">\( Q \)</span> 和 <span class="arithmatex">\( \hat{Q} \)</span>），並使用探索策略來選擇動作。每次互動後，將獲得的經驗存入 replay buffer，並從中抽取批次數據來更新 Q-function。每隔一定次數的更新後，將 target network <span class="arithmatex">\( \hat{Q} \)</span> 同步為最新的 Q-function。這樣的迭代方式能夠逐漸學習到最優策略，最大化累積獎勵。</p>
+<p><strong>1.初始化</strong>：</p>
+<ul>
+<li>初始化 Q-function <span class="arithmatex">\( Q \)</span> 和 target Q-function <span class="arithmatex">\( \hat{Q} \)</span>，初始時 <span class="arithmatex">\( \hat{Q} = Q \)</span>。</li>
+</ul>
+<p><strong>2.每個 episode 中的步驟</strong>：</p>
+<ul>
+<li>
+<p><strong>每個時間步 t</strong>：</p>
+<ul>
+<li>在狀態 <span class="arithmatex">\( s_t \)</span> 下，基於 Q-function 使用 epsilon greedy 探索策略來選擇行動 <span class="arithmatex">\( a_t \)</span>。</li>
+<li>獲取獎勵 <span class="arithmatex">\( r_t \)</span>，並轉移到新狀態 <span class="arithmatex">\( s_{t+1} \)</span>。</li>
+<li>將經驗 <span class="arithmatex">\( (s_t, a_t, r_t, s_{t+1}) \)</span> 存入 replay buffer 中。</li>
+<li>從 buffer 中隨機取樣一個 batch 的資料，每筆資料包含 <span class="arithmatex">\( (s_i, a_i, r_i, s_{i+1}) \)</span>。</li>
+<li>計算 target 值 <span class="arithmatex">\( y = r_i + \gamma \max_a \hat{Q}(s_{i+1}, a) \)</span>。</li>
+<li>
+<p>使用迴歸方法更新 Q-function 的參數，使 <span class="arithmatex">\( Q(s_i, a_i) \)</span> 更接近 target <span class="arithmatex">\( y \)</span>。</p>
+</li>
+<li>
+<p><strong>每 C 次更新後，重置 Target Q-function</strong>：</p>
+<ul>
+<li>將 target network <span class="arithmatex">\( \hat{Q} \)</span> 重置為當前的 Q-function：<span class="arithmatex">\( \hat{Q} = Q \)</span>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>這個過程不斷迭代，通過與環境互動和更新策略，最終學習到一個能夠最大化累積獎勵的 Q-function。</p>
+</div>
+<h2 id="reference">Reference</h2>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Mnih, V., Kavukcuoglu, K., Silver, D., Rusu, A. A., Veness, J., Bellemare, M. G., Graves, A., Riedmiller, M., Fidjeland, A. K., Ostrovski, G., Petersen, S., Beattie, C., Sadik, A., Antonoglou, I., King, H., Kumaran, D., Wierstra, D., Legg, S., &amp; Hassabis, D. (2015). Human-level control through deep reinforcement learning. Nature, 518(7540), 529–533. <a href="https://doi.org/10.1038/nature14236">https://doi.org/10.1038/nature14236</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  上一頁
+                </span>
+                3.2 Q-learning 實作範例（ㄧ）
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一頁
+                </span>
+                5.Policy Gradient
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright © 2018 - 2024 10程式中
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.245445c6.js"></script>
+      
+        
+        
+          
+          <script src="../assets/javascripts/lunr/lunr.stemmer.support.js"></script>
+          
+            
+              
+                <script src="../assets/javascripts/lunr/tinyseg.js"></script>
+              
+              
+                <script src="../assets/javascripts/lunr/lunr.ja.js"></script>
+              
+            
+          
+          
+        
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

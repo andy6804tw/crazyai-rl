@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/3.1Q Leaning 概念/">
+      
       
         <meta name="author" content="10程式中">
       
@@ -38,7 +40,7 @@
     
     
       
-        <title>[Day 4] 什麼是 Q Leaning？ - 全民瘋AI系列 [強化學習]</title>
+        <title>3.1 Q-learning 概念</title>
       
     
     
@@ -67,6 +69,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     
       
     
@@ -89,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#day-4-q-leaning" tabindex="1" class="md-skip">
+      <a href="#q-learning" tabindex="1" class="md-skip">
         跳轉到
       </a>
     
@@ -98,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -111,11 +115,11 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              全民瘋AI系列 [強化學習]
+              全民瘋AI系列 [深度強化學習]
             </span>
             <span class="md-header-nav__topic">
               
-                [Day 4] 什麼是 Q Leaning？
+                3.1 Q-learning 概念
               
             </span>
           
@@ -190,12 +194,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    全民瘋AI系列 [強化學習]
+    全民瘋AI系列 [深度強化學習]
   </label>
   
     <div class="md-nav__source">
@@ -245,8 +249,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
-      [Day 1] 什麼是強化學習？
+    <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-nav__link">
+      1.什麼是強化學習
     </a>
   </li>
 
@@ -257,8 +261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-nav__link">
-      [Day 2] 強化學習方法總覽
+    <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-nav__link">
+      2.強化學習方法總覽
     </a>
   </li>
 
@@ -293,18 +297,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
-      DRL Lecture 1: Policy Gradient
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -316,11 +308,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        [Day 4] 什麼是 Q Leaning？
+        3.1 Q-learning 概念
       </label>
     
-    <a href="./" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link md-nav__link--active">
-      [Day 4] 什麼是 Q Leaning？
+    <a href="./" title="3.1 Q-learning 概念" class="md-nav__link md-nav__link--active">
+      3.1 Q-learning 概念
     </a>
     
       
@@ -334,28 +326,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="前言" class="md-nav__link">
-    前言
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q-learning" title="Q-Learning 是什麼？" class="md-nav__link">
+  <a href="#q-learning_1" title="Q-Learning 是什麼？" class="md-nav__link">
     Q-Learning 是什麼？
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#q-learning_1" title="Q-Learning 更新" class="md-nav__link">
+  <a href="#q-learning_2" title="Q-Learning 更新" class="md-nav__link">
     Q-Learning 更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#q-learning_2" title="Q-Learning 演算法" class="md-nav__link">
+  <a href="#q-learning_3" title="Q-Learning 演算法" class="md-nav__link">
     Q-Learning 演算法
   </a>
   
@@ -378,8 +363,32 @@
 
 
   <li class="md-nav__item">
-    <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-nav__link">
-      5.Q Learning 範例一
+    <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link">
+      3.2 Q-learning 實作範例（ㄧ）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-nav__link">
+      4.Deep Q-learning（DQN）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-nav__link">
+      5.Policy Gradient
     </a>
   </li>
 
@@ -410,28 +419,21 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" title="前言" class="md-nav__link">
-    前言
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q-learning" title="Q-Learning 是什麼？" class="md-nav__link">
+  <a href="#q-learning_1" title="Q-Learning 是什麼？" class="md-nav__link">
     Q-Learning 是什麼？
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#q-learning_1" title="Q-Learning 更新" class="md-nav__link">
+  <a href="#q-learning_2" title="Q-Learning 更新" class="md-nav__link">
     Q-Learning 更新
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#q-learning_2" title="Q-Learning 演算法" class="md-nav__link">
+  <a href="#q-learning_3" title="Q-Learning 演算法" class="md-nav__link">
     Q-Learning 演算法
   </a>
   
@@ -454,8 +456,7 @@
               
                 
                 
-                <h1 id="day-4-q-leaning">[Day 4] 什麼是 Q Leaning？</h1>
-<h2 id="_1">前言</h2>
+                <h1 id="q-learning">Q-learning 概念</h1>
 <p>我們每個人做事情都有自己的行為準則，這些準則通常是基於過去經驗和所獲得的回饋。例如，小時候爸媽常常會說「不寫完作業就不准看電視」。這樣的規範會讓我們明白，在「寫作業」這種狀態下，好的行為準則就是繼續寫作業，直到完成，因為這樣我們就可以得到獎勵——看電視。相反，如果我們選擇了不好的行為，比如沒有寫完作業就去看電視，那麼結果可能會是被父母發現，後果不堪設想。</p>
 <p><img alt="" src="https://i.imgur.com/w7JeF5w.png" /></p>
 <p>隨著這種經驗重複發生，這些情境和行為會逐漸深植在我們的記憶中，最終形成我們的行為準則。這種學習的過程與 Q-Learning 的概念有異曲同工之妙。</p>
@@ -463,7 +464,7 @@
 <p class="admonition-title">Note</p>
 <p>在 Q-Learning 中，系統透過不斷地在環境中探索（explore）和利用（exploit）已知的經驗來學習一個最優行為策略。類似於我們在小時候不斷學習該做什麼、不該做什麼，以便最終在生活中做出最好的選擇。</p>
 </div>
-<h2 id="q-learning">Q-Learning 是什麼？</h2>
+<h2 id="q-learning_1">Q-Learning 是什麼？</h2>
 <p>Q-Learning 是一種強化學習（Reinforcement Learning）的演算法，它的核心是透過決策過程來找出最優行為準則。我們可以透過一個具體的例子來說明 Q-Learning 是如何工作的。假設現在你處於一個「寫作業」的狀態，而在此之前，你並沒有嘗試過在寫作業的時候去看電視，因此對這兩種行為的後果並不清楚。這時，你有兩個選擇：</p>
 <ol>
 <li>繼續寫作業</li>
@@ -489,7 +490,7 @@
 </ul>
 <p>同樣，我會選擇 𝐴2 繼續寫作業。這樣，Q-Learning 通過不斷選擇最大潛在獎勵的行為來進行決策。</p>
 <p><img alt="" src="https://i.imgur.com/H8EWzXn.png" /></p>
-<h2 id="q-learning_1">Q-Learning 更新</h2>
+<h2 id="q-learning_2">Q-Learning 更新</h2>
 <p>在 Q-Learning 的決策過程中，我們根據 Q 表的估計來進行行為選擇。首先，當我們處於狀態 𝑠1時，根據 Q 表的數值發現，行為 𝑎2的值比 𝑎1更高，因此在這種情況下，我們選擇了 𝑎2，進而轉移到新的狀態 𝑠2。</p>
 <p>接下來，進入 Q 表的更新步驟。此時，我們並不會立即採取行為，而是會「想象」自己在 𝑠2 狀態下可能的行為結果，分別評估每種行為的 Q 值。假設在 𝑠2 狀態下，𝑎2 的 Q 值比 𝑎1 的 Q 值高，我們會將較高的 𝑄(𝑠2,𝑎2) 乘上一個衰減因子 𝛾 (例如 0.9)，再加上當前在 𝑠2 所獲得的獎勵 𝑅 (在此例中可能還沒有實際獲得獎勵，因此 𝑅=0)。</p>
 <p><img alt="" src="https://i.imgur.com/V8QvXKT.png" /></p>
@@ -499,7 +500,7 @@
 <p class="admonition-title">Note</p>
 <p>雖然我們通過最大化 𝑄(𝑠2) 進行估算，但此時還沒有真正對 𝑠2 做出行為選擇，具體的行為選擇會在更新完 Q 表後再進行。這就是 Q-Learning 中「離線策略」(off-policy) 的特點。</p>
 </div>
-<h2 id="q-learning_2">Q-Learning 演算法</h2>
+<h2 id="q-learning_3">Q-Learning 演算法</h2>
 <p>以下虛擬碼總結了我們前面討論的Q-Learning算法的核心內容。在每次更新中，我們會使用「Q現實」和「Q估計」來進行更新。而Q-Learning的巧妙之處在於「Q現實」包含了對下一步最大的Q估計，這個估計經過衰減後與當前所獲得的獎勵結合，來形成這一步的「Q現實」。</p>
 <p><img alt="" src="https://i.imgur.com/pEdCUsD.png" /></p>
 <p>以下是演算法中一些重要的參數：</p>
@@ -535,7 +536,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -544,19 +545,19 @@
                 <span class="md-footer-nav__direction">
                   上一頁
                 </span>
-                DRL Lecture 1: Policy Gradient
+                2.強化學習方法總覽
               </span>
             </div>
           </a>
         
         
-          <a href="../5.Q Learning 範例一/" title="5.Q Learning 範例一" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../3.2Q Learning 範例一/" title="3.2 Q-learning 實作範例（ㄧ）" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   下一頁
                 </span>
-                5.Q Learning 範例一
+                3.2 Q-learning 實作範例（ㄧ）
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -610,6 +611,12 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>

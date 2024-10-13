@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://andy6804tw.github.io/crazyai-rl/3.2Q Learning 範例一/">
+      
       
         <meta name="author" content="10程式中">
       
@@ -38,7 +40,7 @@
     
     
       
-        <title>5.Q Learning 範例一 - 全民瘋AI系列 [強化學習]</title>
+        <title>3.2 Q-learning 實作範例（ㄧ）</title>
       
     
     
@@ -67,6 +69,8 @@
     
       <link rel="stylesheet" href="../stylesheets/extra.css">
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
     
       
     
@@ -89,7 +93,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#5q-learning" tabindex="1" class="md-skip">
+      <a href="#q-learning" tabindex="1" class="md-skip">
         跳轉到
       </a>
     
@@ -98,7 +102,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href=".." title="全民瘋AI系列 [強化學習]" class="md-header-nav__button md-logo">
+        <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-header-nav__button md-logo">
           
             <i class="md-icon"></i>
           
@@ -111,11 +115,11 @@
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
           
             <span class="md-header-nav__topic">
-              全民瘋AI系列 [強化學習]
+              全民瘋AI系列 [深度強化學習]
             </span>
             <span class="md-header-nav__topic">
               
-                5.Q Learning 範例一
+                3.2 Q-learning 實作範例（ㄧ）
               
             </span>
           
@@ -190,12 +194,12 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href=".." title="全民瘋AI系列 [強化學習]" class="md-nav__button md-logo">
+    <a href="https://andy6804tw.github.io/crazyai-rl/" title="全民瘋AI系列 [深度強化學習]" class="md-nav__button md-logo">
       
         <i class="md-icon"></i>
       
     </a>
-    全民瘋AI系列 [強化學習]
+    全民瘋AI系列 [深度強化學習]
   </label>
   
     <div class="md-nav__source">
@@ -245,8 +249,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../1.什麼是強化學習/" title="[Day 1] 什麼是強化學習？" class="md-nav__link">
-      [Day 1] 什麼是強化學習？
+    <a href="../1.什麼是強化學習/" title="1.什麼是強化學習" class="md-nav__link">
+      1.什麼是強化學習
     </a>
   </li>
 
@@ -257,8 +261,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../2.強化學習方法總覽/" title="[Day 2] 強化學習方法總覽" class="md-nav__link">
-      [Day 2] 強化學習方法總覽
+    <a href="../2.強化學習方法總覽/" title="2.強化學習方法總覽" class="md-nav__link">
+      2.強化學習方法總覽
     </a>
   </li>
 
@@ -295,20 +299,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../3.Policy Gradient/" title="DRL Lecture 1: Policy Gradient" class="md-nav__link">
-      DRL Lecture 1: Policy Gradient
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-nav__link">
-      [Day 4] 什麼是 Q Leaning？
+    <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-nav__link">
+      3.1 Q-learning 概念
     </a>
   </li>
 
@@ -328,11 +320,11 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        5.Q Learning 範例一
+        3.2 Q-learning 實作範例（ㄧ）
       </label>
     
-    <a href="./" title="5.Q Learning 範例一" class="md-nav__link md-nav__link--active">
-      5.Q Learning 範例一
+    <a href="./" title="3.2 Q-learning 實作範例（ㄧ）" class="md-nav__link md-nav__link--active">
+      3.2 Q-learning 實作範例（ㄧ）
     </a>
     
       
@@ -415,6 +407,30 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-nav__link">
+      4.Deep Q-learning（DQN）
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Policy Gradient/" title="5.Policy Gradient" class="md-nav__link">
+      5.Policy Gradient
+    </a>
   </li>
 
         
@@ -522,7 +538,7 @@
               
                 
                 
-                <h1 id="5q-learning">5.Q Learning 範例一</h1>
+                <h1 id="q-learning">Q-learning 實作範例（ㄧ）</h1>
 <h2 id="_1">目標</h2>
 <p>這次我們將使用表格型 Q-learning 方法來實現一個簡單的範例。這個範例的環境是一個一維的世界，世界的最右邊有一個寶藏，探索者只要找到了這個寶藏，並嘗到了獎勵的甜頭，之後就會記住如何找到寶藏的最佳路徑，這就是他通過強化學習所掌握的行為策略。</p>
 <p><img alt="" src="https://i.imgur.com/4Vkfb07.gif" /></p>
@@ -692,7 +708,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
-          <a href="../4.Q Leaning 概念/" title="[Day 4] 什麼是 Q Leaning？" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../3.1Q Leaning 概念/" title="3.1 Q-learning 概念" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-flex__cell md-flex__cell--shrink">
               <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
             </div>
@@ -701,11 +717,25 @@
                 <span class="md-footer-nav__direction">
                   上一頁
                 </span>
-                [Day 4] 什麼是 Q Leaning？
+                3.1 Q-learning 概念
               </span>
             </div>
           </a>
         
+        
+          <a href="../4.DQN/" title="4.Deep Q-learning（DQN）" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  下一頁
+                </span>
+                4.Deep Q-learning（DQN）
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
@@ -753,6 +783,12 @@
       <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="../javascripts/extra.js"></script>
+      
+        <script src="../javascripts/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>

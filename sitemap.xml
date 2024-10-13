@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>None</loc>
-     <lastmod>2024-10-10</lastmod>
+     <loc>https://andy6804tw.github.io/crazyai-rl/1.什麼是強化學習/</loc>
+     <lastmod>2024-10-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2024-10-10</lastmod>
+     <loc>https://andy6804tw.github.io/crazyai-rl/2.強化學習方法總覽/</loc>
+     <lastmod>2024-10-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2024-10-10</lastmod>
+     <loc>https://andy6804tw.github.io/crazyai-rl/3.1Q Leaning 概念/</loc>
+     <lastmod>2024-10-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2024-10-10</lastmod>
+     <loc>https://andy6804tw.github.io/crazyai-rl/3.2Q Learning 範例一/</loc>
+     <lastmod>2024-10-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>None</loc>
-     <lastmod>2024-10-10</lastmod>
+     <loc>https://andy6804tw.github.io/crazyai-rl/4.DQN/</loc>
+     <lastmod>2024-10-13</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://andy6804tw.github.io/crazyai-rl/Policy Gradient/</loc>
+     <lastmod>2024-10-13</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
