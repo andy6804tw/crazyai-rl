@@ -31,10 +31,10 @@ nav:
     - '1.什麼是強化學習.md'
     - '2.強化學習方法總覽.md'
   - '演算法/方法':
-    - '3.Policy Gradient.md'
-    - '4.Q Leaning 概念.md'
-    - '5.Q Learning 範例一.md'
-    - '6.DRL Lecture 3: Q-learning.md'
+    - '3.1Q Leaning 概念.md'
+    - '3.2Q Learning 範例一.md'
+    - '4.DQN.md'
+    - 'Policy Gradient.md'
 
 
 

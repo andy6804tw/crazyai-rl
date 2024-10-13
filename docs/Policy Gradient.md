@@ -1,4 +1,10 @@
-# DRL Lecture 1: Policy Gradient
+---
+title: '5.Policy Gradient'
+description:
+keywords: 'DRL Lecture 1: Policy Gradient (Review)'
+---
+
+# Policy Gradient
 這篇文章將介紹一個強化學習中的進階技術，名為 Proximal Policy Optimization (PPO)。PPO 是一種政策梯度的升級版方法，被 OpenAI 當作他們的預設強化學習演算法。假如你要實作強化學習，PPO 很可能是你首先會考慮的算法之一。
 
 我們將先快速回顧 Policy Gradient，讓大家再次熟悉這個基礎概念，隨後會深入探討如何從 on-policy 方法轉變為 off-policy 方法，並進一步解釋這兩者的區別。最後，我們將介紹如何在 off-policy 方法上加入一些約束條件，進而形成 PPO 演算法。
