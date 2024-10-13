@@ -670,14 +670,14 @@ article .task-list-control [type="checkbox"] {
 
 @page {
   @top-left {
-    background: #7f57c2;
+    background: #019789;
     content: counter(page);
     height: 1cm;
     color: #fff;
     text-align: center;
     width: 1cm; }
   @top-center {
-    background: #7f57c2;
+    background: #019789;
     content: '';
     display: block;
     height: .05cm;
@@ -748,14 +748,14 @@ html {
     justify-content: flex-end;
     page: chapter; }
     html body article.chapter h1.section_title {
-      background-color: #7f57c2;
+      background-color: #019789;
       padding: 1cm;
       width: 60%;
       text-align: center;
       color: #fff;
       font-size: 30pt; }
   html article#doc-cover h1#doc-title {
-    color: #7f57c2;
+    color: #019789;
     font-size: 34pt;
     margin: 5cm 0.7cm 0 0.7cm;
     page: no-chapter;
@@ -768,7 +768,7 @@ html {
     margin: 0;
     height: 297mm; }
     html body article#doc-cover address {
-      background: #7f57c2;
+      background: #019789;
       flex: 1;
       color: #fff;
       margin: 0 -2cm;
@@ -791,7 +791,7 @@ html {
   margin-top: 5px; }
 
 html body h1 {
-  color: #7f57c2;
+  color: #019789;
   string-set: heading content(); }
 
 html body h2, html body h3, html body h4 {
@@ -819,7 +819,7 @@ h2, h3, h4, h5 {
   margin-bottom: 0.1em; }
 
 html body article a {
-  color: #7f57c2;
+  color: #019789;
   text-decoration: none; }
   html body article a.external-link::after {
     content: " (" attr(href) ")";
@@ -845,7 +845,7 @@ html body article#contents {
     font-weight: 500;
     margin: 3em 0 1em; }
     html body article#contents h3::before {
-      background: #7f57c2;
+      background: #019789;
       content: '';
       display: block;
       height: .08cm;
@@ -859,7 +859,7 @@ html body article#contents {
       margin: .15cm 0;
       padding-top: .15cm; }
       html body article#contents ul li::before {
-        color: #7f57c2;
+        color: #019789;
         content: '• ';
         font-size: 20pt;
         line-height: 16pt;
@@ -871,7 +871,7 @@ html body article#contents {
     list-style: none;
     padding-left: 0; }
   html body article#contents div h4 a::after, html body article#contents ul li a::after {
-    color: #7f57c2;
+    color: #019789;
     content: target-counter(attr(href), page);
     float: right; }
   html body article#contents div h4 {
