@@ -1,7 +1,7 @@
 ---
 title: '5.Policy Gradient'
 description:
-keywords: 'DRL Lecture 1: Policy Gradient (Review)'
+keywords: 'DRL Lecture 1: Policy Gradient (Review), Policy-Based'
 ---
 
 # Policy Gradient
