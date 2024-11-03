@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/1.什麼是強化學習/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/2.強化學習方法總覽/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/1.%E4%BB%80%E9%BA%BC%E6%98%AF%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/3.1Q Leaning 概念/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/2.%E5%BC%B7%E5%8C%96%E5%AD%B8%E7%BF%92%E6%96%B9%E6%B3%95%E7%B8%BD%E8%A6%BD/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/3.2Q Learning 範例一/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/3.1Q%20Leaning%20%E6%A6%82%E5%BF%B5/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/4.DQN/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/3.2Q%20Learning%20%E7%AF%84%E4%BE%8B%E4%B8%80/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
     <url>
-     <loc>https://andy6804tw.github.io/crazyai-rl/Policy Gradient/</loc>
-     <lastmod>2024-10-13</lastmod>
-     <changefreq>daily</changefreq>
+         <loc>https://andy6804tw.github.io/crazyai-rl/4.DQN/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://andy6804tw.github.io/crazyai-rl/Policy%20Gradient/</loc>
+         <lastmod>2024-11-03</lastmod>
+         <changefreq>daily</changefreq>
     </url>
 </urlset>
